@@ -1,0 +1,453 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Typy bibliografii:
+%  - artykuł z czasopisma,
+%  - artykuł z konferencji,
+%  - materiały konferencyjne,
+%  - książka,
+%  - fragment książki,
+%  - książka z serii,
+%  - krótka broszura,
+%  - praca magisterska,
+%  - praca doktorska,
+%  - instrukcja obsługi,
+%  - raport techniczny,
+%  - materiały nieopublikowane,
+%  - inne typy materiałów źródłowych.
+% Więcej informacji na stronie https://www.bibtex.com/
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Artykuły naukowe z czasopism i konferencji
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Article - artykuł z czasopisma.
+% Wymagane pola: author, title, journal, year.
+% Opcjonalne pola: volume, number, pages, month, note.
+@Article{maxwell1865,
+    author  = {James Clerk Maxwell},
+    title   = {A Dynamical Theory of the Electromagnetic Field},
+    journal = {Philosophical Transactions of the Royal Society},
+    year    = {1865},
+    number  = {155},
+    pages   = {459-512},
+    month   = {1},
+    note    = {\href{https://royalsocietypublishing.org/doi/pdf/10.1098/rstl.1865.0008}{<https://royalsocietypublishing.org/doi/pdf/10.1098/rstl.1865.0008>}, dostęp uzyskano 2020-12-03},
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% InProceedings - artykuły z konferencji
+% Wymagane pola: author or editor, title, publisher, year.
+% Opcjonalne pola: volume or number, series, address, edition, month, note.
+@inproceedings{cichon1995,
+    author  = {D. J. {Cichon} and W. {Wiesbeck}},
+    title   = {The Heinrich Hertz wireless experiments at Karlsruhe in the view of modern communication},
+    publisher   = {Institution of Engineering and Technology},
+    year        = {1995},
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Proceedings - publikacja pokonferencyjna, zbiór artykułów z jednej konferencji
+% Wymagane pola: title, year.
+% Opcjonalne pola: editor, volume or number, series, address, publisher, note, month, organization.
+@proceedings{cpee2018,
+    title   = {19th International Conference Computational Problems of Electrical Engineering},
+    year    = {2018},
+    note    = {doi: \href{https://doi.org/10.1109/CPEE44871.2018}{10.1109/CPEE44871.2018}},
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Materiały książkowe
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Book - książka mająca wydawcę.
+% Wymagane pola: author or editor, title, publisher, year.
+% Opcjonalne pola: volume or number, series, address, edition, month, note.
+@book{fowler2009,
+    author    = {Kim Fowler},
+    title     = {Mission-Critical and Safety-Critical Systems Handbook: Design and Development for Embedded Applications},
+    publisher = {Newnes},
+    year      = {2009},
+    ISBN      = {978-0750685672},
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Inbook - część książki, na przykład rozdział i/lub zakres stron.
+% Wymagane pola: author lub editor, title, chapter i/lub pages, publisher, year.
+% Opcjonalne pola: volume or number, series, type, address, edition, month, note.
+@inbook{leksinski1995,
+  chapter   = {1-2},
+  pages     = {9-232},
+  title     = {Matematyka},
+  publisher = {Wydawnictwa Naukowo-Techniczne},
+  year      = {1995},
+  author    = {Wojciech Żakowski and Wacław Leksiński},
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Incollection - część książki mająca własny tytuł, również książka z serii.
+% Wymagane pola: author, title, booktitle, publisher, year.
+% Opcjonalne pola: editor, volume or number, series, type, chapter, pages, address, edition, month, note.
+@incollection{lncsevo,
+  author    = {Gyu Myoung Lee and Noel Crespi and Jun Kyun Choi and Matthieu Boussard},
+  title     = {Internet of Things},
+  booktitle = {Evolution of Telecommunication Services},
+  series    = {Lecture Notes in Computer Science},
+  publisher = {Springer-Verlag Berlin Heidelberg},
+  year      = {2013},
+  editor    = {Emmanuel Bertin and Noel Crespi and Thomas Magedanz},
+  volume    = {7768},
+  isbn      = {978-3642415685},
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Booklet - praca, która została wydrukowana i oprawiona ale nie mająca wydawcy lub stojącej za nią instytucji, broszurka mająca 4-48 stron
+% Wymagane pola: title.
+% Opcjonalne pola: author, howpublished, address, month, year, note.
+@booklet{giglio,
+  author = {Pierluigi Giglio},
+  title  = {Postmodernism and Plagiarism},
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MastersThesis - praca magisterska (uwaga: masters a nie master)
+% Wymagane pola: author, title, school, year.
+% Opcjonalne pola: type, address, month, note.
+@mastersthesis{poirier2020,
+    author  = {Izabela Poirier},
+    title   = {Wykorzystanie technologii Blockchain w komunikacji urządzeń Internetu Rzeczy},
+    school  = {Politechnika Warszawska, Wydział Elektryczny, Instytut Elektrotechniki Teoretycznej i Systemów Informacyjno-Pomiarowych},
+    year    = {2020},
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% phdthesis - praca doktorska
+% Wymagane pola: author, title, school, year.
+% Opcjonalne pola: type, address, month, note.
+@phdthesis{truong2018,
+    author  = {Nguyen Binh Truong},
+    title   = {Evaluation of trust in the Internet of Things : models, mechanisms and applications},
+    school  = {Liverpool John Moores University},
+    year    = {2018},
+    note    = {doi: \href{http://doi.org/10.24377/researchonline.ljmu.ac.uk.00009241}{10.24377/researchonline.ljmu.ac.uk.00009241}}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Dokumenty techniczne
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% manual - instrukcja obługi, specyfikacja techniczna, nota katalogowa (datasheet)
+% Wymagane pola: title.
+% Opcjonalne pola: author, organization, address, edition, month, year, note.
+@manual{AN4230,
+    title           = {STM32 microcontroller random number generation validation using the NIST statistical test suite},
+    organization    = {STMicroelectronics},
+    year            = {2020},
+    month           = {8},
+    note            = {AN4230},
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% techreport - raport techniczny
+% Wymagane pola: author, title, institution, year.
+% Opcjonalne pola: type, number, address, month, note.
+@techreport{nask2020,
+    author      = {{Zespół CERT Polska}},   % Nietypowy autor - dodatkowe nawiasy powodują, że nie zostanie uznany za imię i nazwisko co byłoby komiczne (Polska Z. C.)
+    title       = {Krajobraz bezpieczeństwa polskiego Internetu w 2019 roku},
+    institution = {NASK -- Państwowy Instytut Badawczy},
+    year        = {2020},
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Dokumenty nietypowe
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% unpublished - dokument mający autora i tytuł ale nie opublikowany typowymi metodami
+% Wymagane pola: author, title, note.
+% Opcjonalne pola: month, year.
+@unpublished{wilamowski2017,
+  author    = {Maciej Wilamowski},
+  title     = {,,Daj, ać ja pobruczę, a ty poczywaj''. Pierwsze zdanie po polsku w historii},
+  note    = {\href{https://twojahistoria.pl/2017/11/21/daj-ac-ja-pobrucze-a-ty-poczywaj-co-powinienes-wiedziec-o-pierwszym-zdaniu-zapisanym-w-jezyku-polskim/}{<https://twojahistoria.pl/2017/11/21/daj-ac-ja-pobrucze-a-ty-poczywaj-co-powinienes-wiedziec-o-pierwszym-zdaniu-zapisanym-w-jezyku-polskim/>}, dostęp uzyskano 2020-12-03},
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% misc - jeśli wszystkie inne kategorie nie pasują; przynajmniej jedno z pól opcjonalnych musi być użyte
+% Wymagane pola: brak
+% Opcjonalne pola: author, title, howpublished, month, year, note.
+@misc{szablon,
+    author  = {Łukasz Makowski},
+    title   = {Szablon prac dyplomowych dla Wydziału Elektrycznego Politechniki Warszawskiej},
+    howpublished    = {\href{https://github.com/SP5LMA/EE-Dyplom}{<https://github.com/SP5LMA/EE-Dyplom>}},
+}
+
+@misc{domo10,
+	title = {Data {Never} {Sleeps} 10.0 {\textbar} {Domo}},
+	url = {https://www.domo.com/data-never-sleeps},
+	abstract = {In our 10th annual “Data Never Sleeps” infographic, we share a glimpse at just how much data the internet produces each minute, marveling at the volume and variety of information that has been generated.},
+	language = {en},
+	urldate = {2023-11-26},
+}
+@misc{radicati2019,
+	title = {Email {Statistics} {Report} 2019 2023 {Executive} {Summary}},
+	url = {https://radicati.com/wp/wp-content/uploads/2018/12/Email-Statistics-Report-2019-2023-Executive-Summary.pdf},
+	language = {English},
+	urldate = {2023-11-26},
+	author = {THE RADICATI GROUP, INC.},
+	month = feb,
+	year = {2019},
+	file = {Email-Statistics-Report-2019-2023-Executive-Summary.pdf:/home/maciek/Zotero/storage/3ZXVKAVC/Email-Statistics-Report-2019-2023-Executive-Summary.pdf:application/pdf},
+}
+@INPROCEEDINGS{502676,
+  author={Young, A. and Moti Yung},
+  booktitle={Proceedings 1996 IEEE Symposium on Security and Privacy}, 
+  title={Cryptovirology: extortion-based security threats and countermeasures}, 
+  year={1996},
+  volume={},
+  number={},
+  pages={129-140},
+  doi={10.1109/SECPRI.1996.502676}}
+
+@misc{ransomware_us,
+	title = {Stop {Ransomware} {\textbar} {CISA}},
+	url = {https://www.cisa.gov/stopransomware},
+	abstract = {TIPS \& GUIDANCE Ransomware incidents can severely impact business processes and leave organizations without the data they need to operate and deliver},
+	language = {en},
+	urldate = {2023-11-26},
+	file = {Snapshot:/home/maciek/Zotero/storage/TG9FHP2N/stopransomware.html:text/html},
+}
+
+
+@article{czarnecki_oto_2017,
+	title = {Oto {Marcus} {Hutchins}, 22-letni {Brytyjczyk}, który zatrzymał światowy cyberatak},
+	url = {https://wyborcza.pl/7,75399,21816943,oto-marcus-hutchins-22-letni-brytyjczyk-ktory-zatrzymal-swiatowy.html},
+	abstract = {22-latek twierdzi, że powstrzymał hakerów przez przypadek, ale media ochrzciły go mianem bohatera. Zdaniem ekspertów złośliwe oprogramowanie, które zdążyło zainfekować ponad 300 tys. komputerów, mogli stworzyć hakerzy z Korei Północnej.},
+	language = {pl},
+	urldate = {2023-11-26},
+	journal = {wyborcza.pl},
+	author = {Czarnecki, Maciej},
+	month = may,
+	year = {2017},
+	file = {Snapshot:/home/maciek/Zotero/storage/YGDWUJD3/7,75399,21816943,oto-marcus-hutchins-22-letni-brytyjczyk-ktory-zatrzymal-swiatowy.html:text/html},
+}
+
+@techreport{petrosyan_number_nodate,
+	title = {Number of ransomware attempts per year 2022},
+	url = {https://www.statista.com/statistics/494947/ransomware-attempts-per-year-worldwide/},
+	abstract = {Ransomware attacks usually target organizations that collect large amounts of data and are critically important.},
+	language = {en},
+	urldate = {2023-11-26},
+	author = {Petrosyan, Ani},
+	file = {Snapshot:/home/maciek/Zotero/storage/49HYFBRR/ransomware-attempts-per-year-worldwide.html:text/html},
+}
+
+
+@techreport{petrosyan_worldwide_nodate,
+	title = {Worldwide number of ransomware attacks 2022},
+	url = {https://www.statista.com/statistics/1315826/ransomware-attacks-worldwide/},
+	abstract = {In the last two quarters of 2022, global ransomware attacks increased by over 50 percent, going from over 102 million to nearly 155 million cases.},
+	language = {en},
+	urldate = {2023-11-26},
+	author = {Petrosyan, Ani},
+	file = {Snapshot:/home/maciek/Zotero/storage/3FRRDZF8/ransomware-attacks-worldwide.html:text/html},
+}
+
+@misc{petrosyan_global_cost,
+	title = {Global average cost of a data breach 2023},
+	url = {https://www.statista.com/statistics/987474/global-average-cost-data-breach/},
+	abstract = {As of 2023, the global average cost per data breach amounted to 4.45 million U.S.},
+	language = {en},
+	urldate = {2023-11-26},
+	journal = {Statista},
+	author = {Petrosyan, Ani},
+	file = {Snapshot:/home/maciek/Zotero/storage/GXVL8468/global-average-cost-data-breach.html:text/html},
+}
+
+@techreport{health,
+	title = {Healthcare Cybersecurity Report Q4 2021},
+        author ={Group Herjavec},
+	url = {https://www.herjavecgroup.com/wp-content/uploads/2021/10/2021-Healthcare-Cybersecurity-Report.pdf},
+	abstract = {Healthcare cybersecurity is a particularly complex and difficult task.
+With the ultimate goal of keeping patients safe while simultaneously
+protecting their critical and private data, it presents a challenging
+balancing act for cybersecurity professionals. Pile on the vast amount
+of IoT devices, intricate system of privileged access requirements
+and end users, regulatory compliance such as HIPAA, GDPR, and
+NIS and the unprecedented challenges of a world-wide pandemic
+and maintaining a strong cybersecurity posture can seem like an
+overwhelming and almost impossible undertaking.},
+	urldate = {2023-11-26},
+	file = {2021-Healthcare-Cybersecurity-Report.pdf:/home/maciek/Zotero/storage/QN3HINNH/2021-Healthcare-Cybersecurity-Report.pdf:application/pdf},
+}
+
+
+@misc{etal_check_2022,
+	title = {Check {Point} {Research}: {Third} quarter of 2022 reveals increase in cyberattacks and unexpected developments in global trends},
+	shorttitle = {Check {Point} {Research}},
+	url = {https://blog.checkpoint.com/2022/10/26/third-quarter-of-2022-reveals-increase-in-cyberattacks/},
+	abstract = {Highlights: Global attacks increased by 28\%in the third quarter of 2022 compared to same period in 2021. The average weekly attacks per organization},
+	language = {en-US},
+	urldate = {2023-11-26},
+	journal = {Check Point Blog},
+	author = {Check Point Research, Team},
+	month = oct,
+	year = {2022},
+	file = {Snapshot:/home/maciek/Zotero/storage/BGK6E4EF/third-quarter-of-2022-reveals-increase-in-cyberattacks.html:text/html},
+}
+@article{yung,
+author = {Young, Adam L. and Yung, Moti},
+title = {Cryptovirology: The Birth, Neglect, and Explosion of Ransomware},
+year = {2017},
+issue_date = {July 2017},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {60},
+number = {7},
+issn = {0001-0782},
+url = {https://doi.org/10.1145/3097347},
+doi = {10.1145/3097347},
+abstract = {Recent attacks exploiting a known vulnerability continue a downward spiral of ransomware-related incidents.},
+journal = {Commun. ACM},
+month = {jun},
+pages = {24–26},
+numpages = {3}
+}
+
+
+@misc{redboot,
+	title = {{RedBoot} - {Ransomware} that {Encrypts} the {Hard} {Drive} {Permanently}},
+	url = {https://digital.nhs.uk/cyber-alerts/2017/cc-1673},
+	abstract = {We’re the national information and technology partner to the health and social care system using digital technology to transform the NHS and social care},
+	language = {en},
+        author = {NHS},
+	urldate = {2023-11-29},
+	journal = {NHS Digital},
+	file = {Snapshot:/home/maciek/Zotero/storage/MWWGUXFH/cc-1673.html:text/html},
+}
+
+@article{tromer_cryptanalysis_nodate,
+	title = {Cryptanalysis of the {Gpcode}.ak ransomware virus},
+	language = {en},
+	author = {Tromer, Eran},
+	file = {Tromer - Cryptanalysis of the Gpcode.ak ransomware virus.pdf:/home/maciek/Zotero/storage/KAA4BR7H/Tromer - Cryptanalysis of the Gpcode.ak ransomware virus.pdf:application/pdf},
+}
+
+@misc{arhiveus,
+	title = {Arhiveus {Ransomware} {Trojan} {Threat} {Analysis}},
+	url = {https://www.secureworks.com/research/arhiveus},
+	abstract = {Discover how our research team analyzed the Arhiveous Ransomware Trojan, learn how it operates, and gain insights its attack behavior.},
+	language = {en},
+	urldate = {2023-12-05},
+	file = {Snapshot:/home/maciek/Zotero/storage/PVJCTJ8U/arhiveus.html:text/html},
+}
+@article{virus_1990,
+	title = {Virus {Bulletin}, {January} 1990},
+	language = {en},
+	year = {1990},
+	file = {1990 - Virus Bulletin, January 1990.pdf:/home/maciek/Zotero/storage/YLCGWDLI/1990 - Virus Bulletin, January 1990.pdf:application/pdf},
+}
+
+@misc{zeusbot,
+	title = {Office of {Public} {Affairs} {\textbar} {U}.{S}. {Leads} {Multi}-{National} {Action} {Against} “{Gameover} {Zeus}” {Botnet} and “{Cryptolocker}” {Ransomware}, {Charges} {Botnet} {Administrator} {\textbar} {United} {States} {Department} of {Justice}},
+	url = {https://www.justice.gov/opa/pr/us-leads-multi-national-action-against-gameover-zeus-botnet-and-cryptolocker-ransomware},
+	language = {en},
+	urldate = {2023-12-06},
+	month = jun,
+	year = {2014},
+	file = {Snapshot:/home/maciek/Zotero/storage/AP6PP3D8/us-leads-multi-national-action-against-gameover-zeus-botnet-and-cryptolocker-ransomware.html:text/html},
+}
+
+@misc{cryptolockerfaq,
+	title = {{CryptoLocker} {Ransomware} {Information} {Guide} and {FAQ}},
+	url = {https://www.bleepingcomputer.com/virus-removal/cryptolocker-ransomware-information},
+	abstract = {CryptoLocker is a ransomware program that was released in the beginning of September 2013. This ransomware will encrypt certain files using a mixture of RSA \& AES encryption. When it has finished encrypting your files, it will display a CryptoLocker payment program that prompts you to send a ransom of either \$100 or \$300 in order to decrypt the files. This screen will also display a timer stating that you have 72 hours, or 3 days, to pay the ransom or it will delete your encryption key and you will not have any way to decrypt your files. This ransom must be paid using MoneyPak vouchers or Bitcoins. Once you send the payment and it is verified, the program will decrypt the files that it encrypted.},
+	language = {en-us},
+	urldate = {2023-12-06},
+	journal = {BleepingComputer},
+	file = {Snapshot:/home/maciek/Zotero/storage/QIRQ2ZMW/cryptolocker-ransomware-information.html:text/html},
+}
+
+@misc{tovar,
+	title = {‘{Operation} {Tovar}’ {Targets} ‘{Gameover}’ {ZeuS} {Botnet}, {CryptoLocker} {Scourge} – {Krebs} on {Security}},
+	url = {https://krebsonsecurity.com/2014/06/operation-tovar-targets-gameover-zeus-botnet-cryptolocker-scourge/},
+	language = {en-US},
+	urldate = {2023-12-06},
+	month = jun,
+	year = {2014},
+	file = {Snapshot:/home/maciek/Zotero/storage/FZU2MVZS/operation-tovar-targets-gameover-zeus-botnet-cryptolocker-scourge.html:text/html},
+}
+
+@article{hern_ransomware_2021,
+	chapter = {Technology},
+	title = {Ransomware hackers steal plans for upcoming {Apple} products},
+	issn = {0261-3077},
+	url = {https://www.theguardian.com/technology/2021/apr/22/ransomware-hackers-steal-plans-upcoming-apple-products},
+	abstract = {Group behind REvil ransomware claims stolen files include plans for two laptops and a new Apple Watch},
+	language = {en-GB},
+	urldate = {2023-12-06},
+	journal = {The Guardian},
+	author = {Hern, Alex},
+	month = apr,
+	year = {2021},
+	keywords = {Apple, Apple Watch, Computing, Cybercrime, Hacking, Internet, Lenovo, Technology},
+	file = {Snapshot:/home/maciek/Zotero/storage/UUT8AX8A/ransomware-hackers-steal-plans-upcoming-apple-products.html:text/html},
+}
+
+@misc{darkside,
+	title = {New attack vectors for the {DarkSide} ransomware gang},
+	url = {https://www.acronis.com/en-sg/cyber-protection-center/posts/new-attack-vectors-for-the-darkside-ransomware-gang/},
+	abstract = {DarkSide stands out from other ransomware as a service (RaaS) threats, as one of its attack vectors is based on the Zloader botnet (also known as “Silent Night”). It has also been delivered through compromised third-party service providers.},
+	language = {en},
+	urldate = {2023-12-06},
+	journal = {Acronis},
+}
+
+@misc{kasaya,
+	title = {Kaseya was fixing zero-day just as {REvil} ransomware sprung their attack},
+	url = {https://www.bleepingcomputer.com/news/security/kaseya-was-fixing-zero-day-just-as-revil-ransomware-sprung-their-attack/},
+	abstract = {The zero-day vulnerability used to breach on-premise Kaseya VSA servers was in the process of being fixed, just as the REvil ransomware gang used it to perform their massive Friday attack.},
+	language = {en-us},
+	urldate = {2023-12-06},
+	journal = {BleepingComputer},
+	file = {Snapshot:/home/maciek/Zotero/storage/P5XKVGXQ/kaseya-was-fixing-zero-day-just-as-revil-ransomware-sprung-their-attack.html:text/html},
+}
+
+@article{mcmillan_ransomware_2021,
+	chapter = {Tech},
+	title = {Ransomware {Attack} {Affecting} {Likely} {Thousands} of {Targets} {Drags} {On}},
+	issn = {0099-9660},
+	url = {https://www.wsj.com/articles/ransomware-group-behind-meat-supply-attack-threatens-hundreds-of-new-targets-11625285071},
+	abstract = {The attack has stretched into a third day as cybersecurity officials scramble to remediate it.},
+	language = {en-US},
+	urldate = {2023-12-06},
+	journal = {Wall Street Journal},
+	author = {McMillan, Robert},
+	month = jul,
+	year = {2021},
+	keywords = {blackmail, C\&E Executive News Filter, Content Types, corporate, Corporate/Industrial News, crime, Crime/Legal Action, cybercrime, Cybercrime/Hacking, extortion, Extortion/Blackmail, Factiva Filters, Financial Crime, general news, hacking, industrial news, information security, JBS S/A, JBSS3.BR, Kaseya, Kaseya International, legal action, Malware, North America, political, Political/General News, privacy issues, Privacy Issues/Information Security, products, Products/Services, services, SYND, Technology, United States, WSJ-PRO-WSJ.com},
+	file = {Snapshot:/home/maciek/Zotero/storage/UY5SB34R/ransomware-group-behind-meat-supply-attack-threatens-hundreds-of-new-targets-11625285071.html:text/html},
+}
+
+@misc{huntresslabs_crticial_2021,
+	type = {Reddit {Post}},
+	title = {Crticial {Ransomware} {Incident} in {Progress}},
+	url = {www.reddit.com/r/msp/comments/ocggbv/crticial_ransomware_incident_in_progress/},
+	urldate = {2023-12-06},
+	journal = {r/msp},
+	author = {huntresslabs},
+	month = jul,
+	year = {2021},
+}
+
+@inproceedings{vehabovic_ransomware_2022,
+	address = {Sofia, Bulgaria},
+	title = {Ransomware {Detection} and {Classification} {Strategies}},
+	isbn = {978-1-66549-749-7},
+	url = {https://ieeexplore.ieee.org/document/9858296/},
+	doi = {10.1109/BlackSeaCom54372.2022.9858296},
+	abstract = {Ransomware uses encryption methods to make data inaccessible to legitimate users. To date a wide range of ransomware families have been developed and deployed, causing immense damage to governments, corporations, and private users. As these cyberthreats multiply, researchers have proposed a range of ransomware detection and classification schemes. Most of these methods use advanced machine learning techniques to process and analyze real-world ransomware binaries and action sequences. Hence this paper presents a survey of this critical space and classifies existing solutions into several categories, i.e., including network-based, host-based, forensic characterization, and authorship attribution. Key facilities and tools for ransomware analysis are also presented along with open challenges.},
+	language = {en},
+	urldate = {2023-12-07},
+	booktitle = {2022 {IEEE} {International} {Black} {Sea} {Conference} on {Communications} and {Networking} ({BlackSeaCom})},
+	publisher = {IEEE},
+	author = {Vehabovic, Aldin and Ghani, Nasir and Bou-Harb, Elias and Crichigno, Jorge and Yayimli, Aysegul},
+	month = jun,
+	year = {2022},
+	pages = {316--324},
+	file = {Vehabovic et al. - 2022 - Ransomware Detection and Classification Strategies.pdf:/home/maciek/Zotero/storage/DE744RIM/Vehabovic et al. - 2022 - Ransomware Detection and Classification Strategies.pdf:application/pdf},
+}

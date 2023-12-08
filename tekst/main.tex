@@ -1,0 +1,18 @@
+% Rozdziały zaczynają się od "chapter"
+\chapter{Wprowadzenie}
+% Praca podzielona na mniejsze pliki włączane za pomocą input
+% Zajrzyj do pliku tekst/wstep.tex
+\input{tekst/wstep}
+
+% Można też wszystko pisać w jednym pliku ale będzie on duży
+\chapter{Przegląd literatury}
+% fragment nieużywany albo jeszcze niedodany można zakomentować
+\input{tekst/teoria}
+%\input{tekst/donapisania}
+
+\chapter{Niebanalny tytuł kolejnego rozdziału}
+\input{tekst/praktyka}
+
+\chapter{Podsumowanie}
+\label{ch:podsumowanie}
+\input{tekst/podsumowanie}
