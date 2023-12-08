@@ -78,11 +78,6 @@ Innym znanym RaaS jest \foreignquote{english}{DarkSide} używany przez grupę \f
     \label{fig:enter-label}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Podstawy działania systemów plików}
- 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Istniejące techniki wykrywania i obrony przed ransomware}
 Niezależnie od tego czy atakujący korzysta z techniki \foreignquote{english}{living off the land} lub stara się spowodować starty w możliwie najmniejszym przedziale czasowym, w przeciwdziałaniu atakom ransomware najważniejsza jest szybka reakcja. Wykrywanie ataków ransomware można osiągnąć poprzez monitorowanie nietypowych dla środowiska działań, a następnie natychmiastowe powiadomienie o nich użytkownika lub administratora. Po powiadomieniu administrator może wyizolować, a potem usunąć zagrożenie nim atak spowoduje większe straty. Dzięki wczesnej reakcji administratora i systematycznemu harmonogramowi kopii zapasowych ofiara nie musi być zdana na łaskę atakującego.
 \newline
@@ -109,4 +104,30 @@ W przeciwieństwie do wcześniej wymienionego sposobu wykrywanie poprzez analiz�
 \end{itemize}
 Jedną z najpowszechniejszych metod, używanym przez atakujących do powiadomienia ofiary o ataku i metodzie odzyskania dostępu do danych jest pozostawienie pliku tekstowego w miejscu łatwym do znalezienia np. w katalogu domowym użytkownika. Inną jest tworzenie pliku tymczasowego przechowującego stan zaawansowania ataku. Z tych powodów część metod wykrywania ransomware skupia się na wyszukiwaniu takich plików na podstawie treści, wykorzystując technikę \foreignquote{english}{bag-of-words}~\footnote{Jest to technika przedstawienia tekstu w modelu nieułożonej kolekcji słów. Wykorzystuje się ją m.in. w przetwarzaniu języka naturalnego.} w celu odnalezienia korelacji między terminami typowymi dla takich dokumentów np. \foreignquote{english}{encrypted}, \foreignquote{english}{ransom} etc.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Wykrywanie poprzez analizę ruchu sieciowego}
+Wykrywanie poprzez analizę ruchu siecioweg polega na ograniczenia analizy behawioralnej do wąskiego zakresu zachowań systemu.
+Metoda ta polega na monitorowaniu transferów danych do maszyn o nieznanych i podejrzanych adresach
+oraz domenach. Zgodnie z techniką \foreignquote{english}{live off the land}, atakujący będzie chciał
+możliwe zminimalizować komunikację z serwerami zewnętrznymi które mogą zostać uznane za podejrzane, mimo to 
+znakomita większość narzędzi hakerskich, jest ogólnodostępna i dobrze znana w branży
+cyberbezpieczeństwa i tym samym nie trudne do wykrycia~\cite{sans_secure}.  
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ll}
+    \hline
+    \multicolumn{1}{|l|}{Narzędzie} & \multicolumn{1}{l|}{Strona}  \\ \hline
+    7zip                            & 7-zip.org                    \\
+    AdFind                          & joeware.net                  \\
+    Advanced IP Scanner             & advanced-ip-scanner.com      \\
+    AnyDesk                         & anydesk.com                  \\
+    Proces Hacker                   & processhacker.sourceforge.io \\
+    rclone                          & rclone.org                   \\
+    WinSCP                          & winscp.net                  
+    \end{tabular}
+    \caption{Tabela popularnych narzędzi używanych przez operatorów ransomware i odpowiadające im strony. Dane pochodzą ze strony: https://lots-project.com/}
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Metody analizy statystyk systemu plików}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Podstawy działania systemów plików}
+ 
