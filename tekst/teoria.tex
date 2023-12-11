@@ -316,7 +316,7 @@ się schematy w informacji.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\linewidth]{rysunki/zestawienie.png}
-    \caption{Zestawienie wykresów entropii od długości nagłz ówka. Jako plik przykładowy wybrałem skrypt z sekcji \hyperref[sec:monitorowanie]{Monitorowanie zmian na systemie plików}.}
+    \caption{Zestawienie wykresów entropii od długości nagłówka. Jako plik przykładowy wybrałem skrypt z sekcji \hyperref[sec:monitorowanie]{Monitorowanie zmian na systemie plików}.}
     \label{fig:enter-label}
 \end{figure}
 Miarą tego jak duże jest prawdopodobieństwo, że plik został zaszyfrowany jest pole między tymi dwoma wykresami.
@@ -383,5 +383,83 @@ Jak widać z tabelki, waga informacji o działaniu ransomware znacznie zmalała 
 z logami działania systemu. Audyt systemu może być przydatny dla zaznajomionego z infrastrukturą
 administratora lecz sama jej analiza nie jest skuteczna w wykrywaniu ransomware. Tym samym
 informacja o dokonaniu operacji na systemie plików, sama w sobie nie wystarczy do wykrycia ataku.
+\subsection{Analiza podobieństwa pliku wykonywalnego}
+Praca \foreignquote{english}{A Framework for Analyzing Ransomware using
+Machine Learning}~\cite{8628743} przedstawia jako daną do przetworzenia 
+przez model sztucznej inteligencji podobieńtwo cosinusowe wyliczone na 
+podstawie treści wykonywalnego pliku binarnego. Podobieństwo cosinusowe
+jest metodą pomiaru podobieństwa pomiędzy dwoma niezerowymi wektorami długości $n$.
+Jego wartości zawierają się między zerem a jedynką, jeśli dwa wektory mają taką samą
+orientację, jego wartość wynosi jeden. Dla dwóch wektorów $P$ oraz $Q$, podobieństwo 
+będzie wynosić:
+$$
+cos(\theta) = \frac{P \cdot Q}{|P||Q|} = \frac{\sum_{i = 1}^{n} P_{i} \cdot Q_{i}}{\sqrt{\sum_{i = 1}^{n}P^{2}_{i}} \sqrt{\sum_{i = 1}^{n}Q^{2}_{i}}}
+$$
+W tym wypadku $P$ i  $Q$ to dwa pliki wykonywalne, ransomware lub zwyczajne. Wektory te zostają utworzone na 
+podstawie częstotliwości występowania instrukcji (z argumentami) kodu asemblera zdobytego z binarki programem
+\texttt{objdump}. Przykładowo dla klasycznego programu:
+\begin{lstlisting}[language=C,
+    backgroundcolor=\color{EEGold!5!white},
+    caption={Elementarny program w C.},
+    label={lst:ello}]
+    #include <stdio.h>
 
+    int main() {
+        printf("Hello world!\n");
+        return 0;
+    }
+\end{lstlisting}
+do kodu asemblera będzie wyglądał w taki sposób:
+\begin{lstlisting}[language=C,
+    backgroundcolor=\color{EEGold!5!white},
+    caption={Fragment asemblerowego kodu programu z listingu 3.},
+    label={lst:ello2}]
+000000000040104e <_start>:
+  40104e:	f3 0f 1e fa          	endbr64
+  401052:	66 90                	xchg   %ax,%ax
+  401054:	31 ed                	xor    %ebp,%ebp
+  401056:	49 89 d1             	mov    %rdx,%r9
+  401059:	5e                   	pop    %rsi
+  40105a:	48 89 e2             	mov    %rsp,%rdx
+  40105d:	48 83 e4 f0          	and    $0xfffffffffffffff0,%rsp
+  401061:	50                   	push   %rax
+  401062:	54                   	push   %rsp
+  401063:	45 31 c0             	xor    %r8d,%r8d
+  401066:	31 c9                	xor    %ecx,%ecx
+  401068:	48 c7 c7 46 11 40 00 	mov    $0x401146,%rdi
+  40106f:	ff 15 53 2f 00 00    	call   *0x2f53(%rip) 
+  401075:	f4                   	hlt
+  401076:	66 2e 0f 1f 84 00 00 	cs nopw 0x0(%rax,%rax,1)
+  40107d:	00 00 00 
+\end{lstlisting}
+Aby przedstawić jak wygląda ta metoda, pozwoliłem sobie uprościć jej implementację o wyliczenie
+częstotliwości występowania, nie słów, a bajtów. Robię tak ponieważ wiem, że w przypadku rozpatrywanych programów każda instrukcja
+ma długość jednego bajta. Dany jest program z \hyperref[lst:ello]{listingu 3} oraz:
+\begin{lstlisting}[language=C,
+    backgroundcolor=\color{EEGold!5!white},
+    caption={Program podobny do programu z \hyperref[lst:ello]{listingu 3}. Jedyną różnicą jest obecność zmiennei $i$.},
+    label={lst:helloC}]
+    #include <stdio.h>
+
+    int main() {
+        int i = 2;
+        printf("Hello %d!\n",i);
+        return 0;
+    }
+\end{lstlisting}
+Wyliczamy prawdopodobieństwo na specjalnie spreparowanym pliku z którego wyjąłem wyłącznie sekcję
+z instrukcjami i jej argumentami:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{rysunki/p1.png}
+    \caption{Prawdopodobieństwa wystąpienia bajtów o konkretnej wartości w pliku z listingu 3.}
+    \label{fig:enter-label}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{rysunki/p2.png}
+    \caption{Prawdopodobieństwa wystąpienia bajtów o konkretnej wartości w pliku z listingu 5.}
+    \label{fig:enter-label}
+\end{figure}
+Ich podobieństwo wyliczone ze wzoru na prodobienśtwo cosinusowe wynosi $cos(\theta) = 0.997589145765327$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
