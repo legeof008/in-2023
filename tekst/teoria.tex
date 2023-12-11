@@ -288,8 +288,8 @@ identyfikacji tego czy podejrzany plik binarny został skompilowalny lokalnie z 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Metody analizy statystyk systemu plików}
 Ta praca skupia się na metodach analizy opisanych po krótce w rozdziale \hyperref[sec:behav]{Wykrywanie poprzez analizę zachowania systemu}.
-Metody te zgodnie z naturą pracy będą skupione na zachowaniu i treści systemu plików. 
-Wraz ze wzrostem ryzyka ataków ransomware, wzrosła też ilość prac i teorii na temat tego jak  taki atak wykryć
+Metody te zgodnie z naturą pracy będą skupione na treści i zmianach w systemie plików. 
+Wraz ze wzrostem ryzyka ataków ransomware, wzrosła też ilość prac opisujących możliwe metody wykrywania ataków
 na podstawie statystyk systemowych. W tym rozdziale chciałbym wymienić i po krótce wytłumaczyć, w mojej opinii, najciekawsze z nich.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Analiza entropii pliku}
@@ -297,7 +297,7 @@ W pracy \foreignquote{english}{Differential area analysis for ransomware
 attack detection within mixed file datasets}~\cite{davies_differential_2021} przedstawiona jest 
 metoda potencjalnego wykrycia tego czy plik został zaszyfrowany poprzez obliczenie entropii pliku dla różnych wielkości nagłówka.
 Nagłówek w kontekście tej metody po prostu oznacza ilość bajtów braną pod uwagę w obliczaniu entropii, a niekoniecznie
-twardo sprecyzowany w specyfikacji rodzaju pliku obszar. Maksymalna możliwa entropia per bajt dla pliku jest równa ośmiu bitom na jeden bajt,
+twardo sprecyzowany w specyfikacji rodzaju pliku obszar na jego początku. Maksymalna możliwa entropia per bajt dla pliku jest równa ośmiu bitom na jeden bajt,
 wartość sugerująca kompletnie losową naturę pliku. Wzór na entropię $H$~\cite{6773024} to:
 $$
 H(X) = - \sum_{i=1}^{n} P(x_{i})log_{2}P(x_{i})
@@ -311,7 +311,7 @@ od długości nagłówka $x$ będzie przypominał funkcję $log_{2}(x)$.
     \caption{Wykres entropii od długości nagłówka dla pliku zawierającego zupełnie losowe dane.}
     \label{fig:enter-label}
 \end{figure}
-Dla plików, rzeczywistych plik wartość entropii będzie rosnąć w mniejszym tępe, ze względu na powtarzające
+Dla rzeczywistych plików wartość entropii będzie rosnąć w mniejszym tępie, ze względu na powtarzające
 się schematy w informacji.
 \begin{figure}[H]
     \centering
@@ -328,7 +328,7 @@ Miarą tego jak duże jest prawdopodobieństwo, że plik został zaszyfrowany je
 \end{figure}
 W pracy \foreignquote{english}{Differential area analysis for ransomware
 attack detection within mixed file datasets} zasugerowane są pewne wartości klasyfikacyjne, ustalone na podstawie
-zdobytej dokładności wykrycia zaszyfrowanego pliku.
+dokładności wykrycia zaszyfrowanego pliku w zbiorach testowych.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.85\linewidth]{rysunki/wycinek.png}
@@ -336,19 +336,19 @@ zdobytej dokładności wykrycia zaszyfrowanego pliku.
     attack detection within mixed file datasets, Table 7, Table 8, s. 11.}
     \label{fig:enter-label}
 \end{figure}
-Metoda ta wydaje się być bardzo obiecująca lecz do jej ograniczeń należą wymagania co do odpowiedniej wielkości pliku.
+Metoda ta wydaje się być bardzo obiecująca lecz jest ograniczona wymogiem wielkości pliku. Jak widać skuteczność jest większa dla plików o rozmiarze większych niż 32 bajty.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Automatyczna analiza behawioralna poprzez audyt systemu}
 W pracy \foreignquote{english}{Automated Behavioral Analysis of Malware
 A Case Study of WannaCry Ransomware}~\cite{8260673} opisana jest metoda identyfikacji ransomware
 poprzez wyciągnięcie z logów audytu podczas rutynowego działania systemu. W przypadku tej pracy
 poszukiwanie abnormalnych zachowań systemu było oparte \textbf{wyłącznie} na wiedzy o tym, że atak ma miejsce.
-System do audytowania systemu w pracy ma podobne możliwości do wymienionego w sekcji \hyperref[sec:monitorowanie]
+Aplikacja do audytowania systemu we wcześniej wymienionej pracy ma podobne możliwości do wymienionego w sekcji \hyperref[sec:monitorowanie]
 {Monitorowanie zmian na systemie plików} Linux Auditing Framework.\newline
-Przedstawiona metoda opera się o \foreignquote{english}{Term-Frequency-Inverse-Document-Frequency (TF-IDF)}~\cite{salton_term-weighting_1988} czyli metrykę obliczania 
-wagu słów w oparciu o liczbę wystąpień, dostosowaną do faktu częstszego występowania niektórych słów.
+Przedstawiona w pracy metoda opera się o \foreignquote{english}{Term-Frequency-Inverse-Document-Frequency (TF-IDF)}~\cite{salton_term-weighting_1988} czyli metrykę obliczania 
+wagu słów w oparciu o liczbę wystąpień, dostosowaną do faktu generalnie częstszego występowania niektórych słów.
 Jest to metoda często wykorzysytwana w jako forma wydobywania informacji z tekstów m.in. \foreignquote{english}{text miningu}.
-TF-IDF jest produktem dwóch statystyk: częstotliwości występowania słowa or odwrotnej częstotliwości dokumentu.
+TF-IDF jest produktem dwóch statystyk: częstości występowania słowa oraz odwrotnej częstości dokumentu.
 Częstotliwość występowania słowa zapisuje się wzorem:
 $$
 tf(t,d) = \frac{f_{t,d}}{\sum_{t'\in d}f_{t',d}}
@@ -364,7 +364,7 @@ pierwszy w którym były wyłącznie logi z działania wirusa WannaCry oraz norm
 w którym przemieszane były działania wirusa z normalnym działaniem systemu w tym samym dokumencie.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\linewidth]{rysunki/wannashit.png}
+    \includegraphics[width=0.3\linewidth]{rysunki/wannashit.png}
     \caption{Tabela plików tymczasowych wykorzystywanych przez wirus WannaCry. Źródło: 
     Automated Behavioral Analysis of Malware
 A Case Study of WannaCry Ransomware, Table I, s. 2.}
@@ -389,14 +389,14 @@ Machine Learning}~\cite{8628743} przedstawia jako daną do przetworzenia
 przez model sztucznej inteligencji podobieńtwo cosinusowe wyliczone na 
 podstawie treści wykonywalnego pliku binarnego. Podobieństwo cosinusowe
 jest metodą pomiaru podobieństwa pomiędzy dwoma niezerowymi wektorami długości $n$.
-Jego wartości zawierają się między zerem a jedynką, jeśli dwa wektory mają taką samą
-orientację, jego wartość wynosi jeden. Dla dwóch wektorów $P$ oraz $Q$, podobieństwo 
+Jego wartości zawierają się między zerem a jedynką. Jeśli dwa wektory mają taką samą
+orientację jego wartość wynosi jeden. Dla dwóch wektorów $P$ oraz $Q$, podobieństwo 
 będzie wynosić:
 $$
 cos(\theta) = \frac{P \cdot Q}{|P||Q|} = \frac{\sum_{i = 1}^{n} P_{i} \cdot Q_{i}}{\sqrt{\sum_{i = 1}^{n}P^{2}_{i}} \sqrt{\sum_{i = 1}^{n}Q^{2}_{i}}}
 $$
-W tym wypadku $P$ i  $Q$ to dwa pliki wykonywalne, ransomware lub zwyczajne. Wektory te zostają utworzone na 
-podstawie częstotliwości występowania instrukcji (z argumentami) kodu asemblera zdobytego z binarki programem
+W tym wypadku $P$ i  $Q$ to dwa pliki wykonywalne, mogą to być wirusy lub zwyczajne programy codziennego użytku. Wektory te zostają utworzone na 
+podstawie częstotliwości występowania instrukcji (z argumentami) kodu asemblera zdobytego z pliku binarnego, programem
 \texttt{objdump}. Przykładowo dla klasycznego programu:
 \begin{lstlisting}[language=C,
     backgroundcolor=\color{EEGold!5!white},
@@ -437,7 +437,7 @@ częstotliwości występowania, nie słów, a bajtów. Robię tak ponieważ wiem
 ma długość jednego bajta. Dany jest program z \hyperref[lst:ello]{listingu 3} oraz:
 \begin{lstlisting}[language=C,
     backgroundcolor=\color{EEGold!5!white},
-    caption={Program podobny do programu z \hyperref[lst:ello]{listingu 3}. Jedyną różnicą jest obecność zmiennei $i$.},
+    caption={Program podobny do programu z listingu 3. Jedyną różnicą jest obecność zmiennej $i$.},
     label={lst:helloC}]
     #include <stdio.h>
 
@@ -457,9 +457,9 @@ z instrukcjami i jej argumentami:
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\linewidth]{rysunki/p2.png}
+    \includegraphics[width=0.9\linewidth]{rysunki/p2.png}
     \caption{Prawdopodobieństwa wystąpienia bajtów o konkretnej wartości w pliku z listingu 5.}
     \label{fig:enter-label}
 \end{figure}
-Ich podobieństwo wyliczone ze wzoru na prodobienśtwo cosinusowe wynosi $cos(\theta) = 0.997589145765327$.
+Ich podobieństwo wyliczone ze wzoru na prodobienśtwo cosinusowe wynosi $cos(\theta) = 0.997589145765327$, czyli jest bardzo duże co pokrywa się z oczekiwaniami. Jest to obiecująca metoda, która w przeciwieństwie do sprawdzania sygnatury pliku funkcją skrótu, jest adaptowalna na małe i średnie zmiany w wykrywaniu historycznie występujących zagrożeń. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
