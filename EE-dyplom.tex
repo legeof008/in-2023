@@ -11,8 +11,14 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{caption}
-
-
+\usepackage{xurl}
+\usepackage{afterpage}
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+\usepackage{svg} 
 % thesis=[inz|mgr|bsc|msc]
 %  * inz - praca inżynierska
 %  * mgr - praca magisterska

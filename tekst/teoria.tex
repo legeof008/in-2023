@@ -1,33 +1,36 @@
-W artykule opublikowanym przez firmę Microsoft o tytule \enquote{Co to jest cyberbezpieczeństwo ?}~\footnote{Artykuł jest dostępny pod adresem: https://www.microsoft.com/pl-pl/security/business/security-101/what-is-cybersecurity}, trzy z sześciu wymienionych typów zagrożenia to: 
+W artykule opublikowanym przez firmę Microsoft\footnote{Artykuł jest dostępny pod adresem: \url{https://www.microsoft.com/pl-pl/security/business/security-101/what-is-cybersecurity}} o tytule \enquote{Co to jest cyberbezpieczeństwo ?}, trzy z sześciu wymienionych typów zagrożenia to: 
 \begin{itemize}
     \item oprogramowanie wymuszające okup,
     \item inżynieria społeczna,
     \item wyłudzanie informacji.
 \end{itemize}
-Autorzy prawdopodobnie nie bez powodu nazwali pierwszy z powyższych typów tak, a nie 
-\enquote{atak oprogramowaniem wymuszjącym okup}. Atak ransomware zawiera w sobie każde z tych zagrożeń.
-Oprogramowanie złośliwe wymaga od ofiary zaufania ,że to co uruchamia jest nieszkodliwe. Typowo propagacja takiego malware ma miejsce poprzez tzw. 
-\foreignquote{english}{phishing} czyli podszywanie się atakującego za zaufany serwis lub instytucję, z którymi ofiara mogła wejść w interakcję w przeszłości. 
+Atak ransomware zawiera w sobie każde z tych zagrożeń.
+Oprogramowanie złośliwe wymaga od ofiary zaufania, że to co uruchamia jest nieszkodliwe. Typowo propagacja takiego malware ma miejsce poprzez tzw. 
+\foreignquote{english}{phishing} czyli podszywanie się atakującego za zaufany serwis lub instytucję z którymi ofiara mogła wejść w interakcję w przeszłości. 
 Aby zrozumieć zakres tych technik oraz możliwe wektory ataku, należy prześledzić ich historię.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Historia i ewolucja ataków typu ransomware}
+\label{sec:his}
 \subsection{Wczesna historia}
 Mimo stopniowego nasilania się ataków ransomware w przeciągu ostatnich 7 lat sama idea utrudnienia
-dostępu do plików pod groźbą okupu jest znana od dosyć dawna. Już w drugiej połowie lat 80-tych, w USA,
+dostępu do plików pod groźbą okupu jest znana od dosyć dawna. Już w drugiej połowie lat 80-tych, w~USA,
 cyberprzestępcy w zamian za odzyskanie dostępu do danych wyłudzali okup, który następnie był wysyłany drogą pocztową. Jednym z pierwszych udokumentowanych ataków wirusem ransomware był DOSowy \foreignquote{english}{AIDS trojan}~\cite{virus_1990} z 1989 roku. Autor programu — Joseph Popp — przekazywał dyskietki drogą pocztową do wybranej grupy ofiar pod przykrywką załącznika do ulotki informacyjnej na temat wirusa AIDS. Program modyfikował plik \texttt{AUTOEXEC.BAT}, z którego korzystał w celu zliczenia ilości uruchomień komputera. W momencie przekroczenia liczby 90 uruchomień szyfrował nazwy wszystkich plików na dysku \texttt{C:\/}, tym samym uniemożliwiając korzystanie z systemu.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\linewidth]{rysunki/aids-trojan.png}
-    \caption{Wiadomość ukazująca się po aktywacji wirusa \foreignquote{english}{AIDS trojan}}
+    \caption{Wiadomość ukazująca się po aktywacji wirusa \foreignquote{english}{AIDS trojan}\protect\footnotemark}
     \label{fig:enter-label}
 \end{figure}
-Atakujący podszywał się pod fikcyjną korporację \foreignquote{english}{PC Cyborg Corporation}, na której adres w Panamie miał być wysyłany okup. Paczka razem z dyskietką posiadała również ulotkę z krótkim wprowadzeniem, instrukcją obsługi, a także licencją co było w tamtym czasie powszechną i budzącą zaufanie praktyką. 
+\footnotetext{\url{https://sophosnews.files.wordpress.com/2012/09/aids-info-demand-500.png}}
+
+Atakujący podszywał się pod fikcyjną korporację \foreignquote{english}{PC Cyborg Corporation}, na której adres w~Panamie miał być wysyłany okup. Paczka razem z dyskietką posiadała również ulotkę z krótkim wprowadzeniem, instrukcją obsługi, a także licencją co było w tamtym czasie powszechną~i~budzącą zaufanie praktyką. 
 Program nie szyfrował treści samych plików, jedynie ich nazwy. Klucz szyfrowania był kluczem symetrycznym, co sprawiało, że złamanie go mogło pomóc odblokować system, każdej ofierze borykającej się z tą samą wersją wirusa. Eliminacja tej wady była inspiracją dla pracy \foreignquote{english}{Cryptovirology: Extortion-Based Security Threats and Countermeasures}, w której przedstawiono pojęcie \foreignquote{english}{cryptovirological attack}~\cite{yung}.
 \newline
-Po roku 1996, w erze upowszechnienia się internetu, pojawiły się sporadyczne ataki ransomware na niewielką skalę, tym razem ulepszone o szyfrowanie hybrydowe. W latach dwutysięcznych pojawił się trudny do wykrycia \foreignquote{english}{PGPCoder}~\cite{tromer_cryptanalysis_nodate} używający 660-bitowego klucza RSA. Innym ransomware występującym w tamtym czasie był \foreignquote{english}{Archievus} ~\cite{arhiveus}, również używający klucza RSA, w wersji 1024-bitowej, którego tragiczną wadą było używanie tego samego klucza do szyfrowania każdego pliku na każdej zainfekowanej maszynie. Ataki te, aby zainfekować ofiarę, wykorzystywały phishing i podszywały się pod zaufane strony internetowe. 
+Po roku 1996, w erze upowszechnienia się internetu, pojawiły się sporadyczne ataki ransomware na niewielką skalę, tym razem ulepszone o szyfrowanie hybrydowe. W latach dwutysięcznych pojawił się trudny do wykrycia \foreignquote{english}{PGPCoder}~\cite{tromer_cryptanalysis_nodate} używający 660-bitowego klucza RSA. Innym ransomware występującym w tamtym czasie był \foreignquote{english}{Archievus} ~\cite{arhiveus}, również używający klucza RSA, w wersji 1024-bitowej, którego tragiczną wadą było używanie tego samego klucza do szyfrowania każdego pliku na każdej zainfekowanej maszynie. Ataki te, aby zainfekować ofiarę, wykorzystywały phishing i~podszywały się pod zaufane strony internetowe. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Historia współczesna}
-Mimo historii sięgającej jeszcze lat 80 - tych, ataki ransomware nie były szczególnie powszechne w latach dwutysięcznych. Status quo został zachwiany po upowszechnieniu się kryptowalut, umożliwiających poufną i trudną do wyśledzenia wymianę środków między ofiarą a atakującym. Jednak uzyskanie pieniędzy od ofiar niezaznajomionych z kryptowalutami nie było proste, dopiero kantory kryptowalut dały cyberprzestępcom możliwość prostego i poufnego wyłudzenia środków. Pierwsza dekada XXI w. była dla cyberprzestępców czasem udoskonalania \foreignquote{english}{scareware} czyli oprogramowania mającego wystraszyć ofiarę na tyle, żeby zapłaciła za dostęp do stacji, bez wyrządzania szczególnej szkody na danych. 
+Mimo historii sięgającej jeszcze lat 80 - tych, ataki ransomware nie były szczególnie powszechne w latach dwutysięcznych. Status quo został zachwiany po upowszechnieniu się kryptowalut, umożliwiających poufną~i~trudną do wyśledzenia wymianę środków między ofiarą a atakującym. Jednak uzyskanie pieniędzy od ofiar niezaznajomionych z kryptowalutami nie było proste, dopiero kantory kryptowalut dały cyberprzestępcom możliwość prostego~i~poufnego wyłudzenia środków. Pierwsza dekada XXI w. była dla cyberprzestępców czasem udoskonalania \foreignquote{english}{scareware}, czyli oprogramowania mającego wystraszyć ofiarę na tyle, żeby zapłaciła za odzyskanie dostępu do stacji, bez wyrządzania szczególnej szkody na danych. 
 \newline
 W 2013 roku w annały historii internetu wszedł Windowsowy wirus \foreignquote{english}{CryptoLocker}. Wykorzystywał on do szyfrowania 2048-bitową parę kluczy RSA, generowaną na osobnym serwerze, a następnie dostarczał klucz publiczny na stację ofiary w celu szyfrowania jej plików~\cite{cryptolockerfaq}. Tym samym ofiara nie miała innej możliwości odzyskania plików niż zapłacić okup wynoszący 300 USD. Wirus dostarczany był jako załącznik w liście elektronicznym oraz przez owiany złą sławą \foreignquote{english}{Gameover ZeuS botnet}~\cite{zeusbot}. Załącznik posiadał w sobie plik \texttt{.zip}, który z kolei zawierał w sobie plik \texttt{.exe}, z ikonką charakterystyczną dla pliku pdf. Atakujący wykorzystywał domyślne zachowanie Windowsa polegające na ukrywaniu rozszerzenia pliku. Następnie wirus podejmował następujące kroki:
 \begin{enumerate}
@@ -35,42 +38,44 @@ W 2013 roku w annały historii internetu wszedł Windowsowy wirus \foreignquote{
     \item dodawał nową pozycję do windowsowego rejestru, który uruchamiał wirus wraz z rozruchem systemu,
     \item pobierał klucz publiczny z jednego z serwerów,
     \item wirus inicjował szyfrowanie plików na zamontowanych dyskach, w tym na dyskach sieciowych,
-    \item wyświetla ekran informujący o zdarzeniu i możliwości opłacenia okupu w BTC do 100 godzin od zaszyfrowania.
+    \item wyświetla ekran informujący o zdarzeniu~i~możliwości opłacenia okupu w BTC do 100 godzin od zaszyfrowania.
 \end{enumerate}
 Po opłaceniu okupu ofiara miała możliwość pobrania programu dekodującego z załadowanym, odpowiednim kluczem prywatnym. Wirus szyfrował jedynie pliki z odpowiednimi rozszerzeniami m.in. pliki AutoCAD czy dokumenty MS Office.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\linewidth]{rysunki/cryptolocker.png}
-    \caption{Ekran wyświetlający się po zainfekowaniu komputera przez CryptoLocker.}
+    \caption{Ekran wyświetlający się po zainfekowaniu komputera przez CryptoLocker\protect\footnotemark.}
     \label{fig:enter-label}
 \end{figure}
-Zagrożenie zostało zneutralizowane w wyniku zainicjowanej przez departament sprawiedliwości USA, operacji \foreignquote{english}{Tovar}~\cite{tovar} w wyniku której udało się uzyskać dostęp do bazy danych zawierającej prywatne klucze RSA na podstawie których możliwe było odzyskanie plików.
+\footnotetext{\url{https://grzegorzkowalik.com/wp-content/uploads/2015/05/cryptolocker.png}}
+Zagrożenie tym wirusem zostało zneutralizowane w wyniku zainicjowanej przez departament sprawiedliwości USA, operacji \foreignquote{english}{Tovar}~\cite{tovar} w wyniku której udało się uzyskać dostęp do bazy danych zawierającej prywatne klucze RSA na podstawie których możliwe było odzyskanie plików.
 \newline
-\foreignquote{english}{CryptoLocker} był swego rodzaju kamieniem milowym w rozwoju cyberprzestępczości. Złożona natura procederu stała się normą dla ataków ransomware a wraz z coraz większą popularnością kryptowalut i usprawnionymi algorytmami szyfrowania asymetrycznego, ilość ataków oraz generowane przez nie straty stabilnie wzrastają aż do dnia dzisiejszego.
+\foreignquote{english}{CryptoLocker} był swego rodzaju kamieniem milowym w rozwoju cyberprzestępczości. Złożona natura procederu stała się normą dla ataków ransomware a wraz z coraz większą popularnością kryptowalut~i~usprawnionymi algorytmami szyfrowania asymetrycznego, ilość ataków oraz generowane przez nie straty stabilnie wzrastają aż do dnia dzisiejszego.
 \newline
-Aktualnie cyberprzestępcy zmienili styl ataku ze skupiającego się na infekcji jak największej ilości stacji, na tzw. \foreignquote{english}{big game hunting}~\footnote{Dokładniejszą definicję z przykładami można znaleźć pod adresem:\newline https://www.malwarebytes.com/blog/news/2023/07/ransomware-making-big-money-through-big-game-hunting}. BGH w dużej mierze polega na koordynacji inżynierii społecznej i zaprojektowania oprogramowania ransomware w sposób, który będzie najbardziej szkodliwy dla dużych organizacji. Obierana jest mniejsza ilość celów na rzecz wyższej kwoty okupu. Raport \foreignquote{english}{CrowdStrike Services} z 2023 roku donosi, że jedną najszerzej stosowanych taktyk BGH jest połączenie ransomware z groźbą upublicznienia skradzionych danych. Typowo dane zostają upubublicznione gdy minie termin zapłaty okupu. Naruszenie danych jest rozłożone w czasie i wykorzystuje narzędzia już dostępne na atakowanym środowisku. Dzięki temu ataki są cięższe do wykrycia~\footnote{Technika ta nosi nazwę \foreignquote{english}{Living off the land}}.
+Aktualnie cyberprzestępcy zmienili styl ataku ze skupiającego się na infekcji jak największej ilości stacji, na tzw. \foreignquote{english}{big game hunting} (BGH)\footnote{Dokładniejszą definicję z przykładami można znaleźć pod adresem:\newline \url{https://www.malwarebytes.com/blog/news/2023/07/ransomware-making-big-money-through-big-game-hunting}}.  w dużej mierze polega na koordynacji inżynierii społecznej~i~zaprojektowania oprogramowania ransomware w sposób, który będzie najbardziej szkodliwy dla dużych organizacji. Obierana jest mniejsza ilość celów na rzecz wyższej kwoty okupu. Raport \foreignquote{english}{CrowdStrike Services} z 2023 roku donosi, że jedną najszerzej stosowanych taktyk BGH jest połączenie ransomware z groźbą upublicznienia skradzionych danych. Typowo dane zostają upubublicznione gdy minie termin zapłaty okupu. Naruszenie danych jest rozłożone w czasie~i~wykorzystuje narzędzia już dostępne na atakowanym środowisku. Dzięki temu ataki są cięższe do wykrycia\footnote{Technika ta nosi nazwę \foreignquote{english}{Living off the land}}.
 Techniki zastraszenia zostały także dopracowane, aby wywołać możliwie na największą presję na ofiarach. W przypadku \foreignquote{english}{REvil} kradzione dane bywały etapowo upubliczniane, aby zmusić ofiarę do szybszego działania ~\cite{hern_ransomware_2021}.\newline
-Z powodu dużej opłacalności takich ataków utworzony został model \foreignquote{english}{ransomware as a service} (RaaS), w którym klienci płacą za dokonanie ataku ransomware programem utworzonym przez inne grupy hakerskie~\footnote{Wykorzystywane jest oprogramowanie utworzone przez inne osoby, podobnie jak w modelu Software as a Service.}. 
+Z powodu dużej opłacalności takich ataków utworzony został model \foreignquote{english}{ransomware as a service} (RaaS), w którym klienci płacą za dokonanie ataku ransomware programem utworzonym przez inne grupy hakerskie\footnote{Wykorzystywane jest oprogramowanie utworzone przez inne osoby, podobnie jak w modelu Software as a Service.}. 
 \newline
-Jednym z nich jest wcześniej wymieniony \foreignquote{english}{REvil} używany przez grupę \foreignquote{english}{PINCHY SPIDER}, którego cechą rozpoznawczą jest postowanie skradzionych danych na blogu \foreignquote{english}{Happy Blog}~\cite{hern_ransomware_2021}. W 2021 roku użyto go na wysoką skalę~\cite{mcmillan_ransomware_2021} przez podatność Kaseya VSA~\footnote{Kaseya VSA jest narzędziem do zarządzania infrastrukturą IT.} o identyfikatorze CVE-2021-30116~\cite{kasaya}. Atak ten można podsumować w następujących krokach:
+Jednym z nich jest wcześniej wymieniony \foreignquote{english}{REvil} używany przez grupę \foreignquote{english}{PINCHY SPIDER}, którego cechą rozpoznawczą jest postowanie skradzionych danych na blogu \foreignquote{english}{Happy Blog}~\cite{hern_ransomware_2021}. W 2021 roku użyto go na wysoką skalę~\cite{mcmillan_ransomware_2021} przez podatność Kaseya VSA\footnote{Kaseya VSA jest narzędziem do zarządzania infrastrukturą IT.} o identyfikatorze CVE-2021-30116~\cite{kasaya}. Atak ten można podsumować w następujących krokach:
 \begin{enumerate}
     \item użycie komendy \texttt{PowerShell} do zakończenia procesów Windows Defender,
     \item podstawienie pliku wykonywalnego do katalogu instalacyjnego Windowsa,
-    \item zgodnie z techniką \foreignquote{english}{Living off the land} wirus pobierał pomocnicze pliki wykonywalne i maskował je nazwami typowymi dla plików pomocniczych Windowsa np. \texttt{agent.exe},
-    \item pobrane pliki następnie były przenoszone do odpowiednich folderów w celu załadowania ich razem z plikiem wykonywalnym \texttt{MsMpeng.exe} techniką nazywaną \foreignquote{english}{DLL sideloading}~\footnote{DLL siedloading polega na załadowaniu pliku binarnego o innej treści niż oryginalna. Wykorzystuje się ją do aktywacji serwisów lub wykonywania procesów w sposób trudny do wykrycia przez użytkownika.}
+    \item zgodnie z techniką \foreignquote{english}{Living off the land} wirus pobierał pomocnicze pliki wykonywalne~i~maskował je nazwami typowymi dla plików pomocniczych Windowsa np. \texttt{agent.exe},
+    \item pobrane pliki następnie były przenoszone do odpowiednich folderów w celu załadowania ich razem z plikiem wykonywalnym \texttt{MsMpeng.exe} techniką nazywaną \foreignquote{english}{DLL sideloading}\footnote{DLL siedloading polega na załadowaniu pliku binarnego o innej treści niż oryginalna. Wykorzystuje się ją do aktywacji serwisów lub wykonywania procesów w sposób trudny do wykrycia przez użytkownika.}
     \item w momencie wywołania przez \texttt{MsMpeng.exe} serwisów, na które ma zależności, ładowany jest podłożony wcześniej plik \texttt{.dll}, a razem z nim rozpoczyna się szyfrowanie danych na maszynie,
-    \item na pulpicie tworzony jest plik z instrukcją tłumaczącą jak spłacić okup w BTC na stronie ukrytej za TORem.~\cite{huntresslabs_crticial_2021}
+    \item na pulpicie tworzony jest plik z instrukcją tłumaczącą jak spłacić okup w BTC na stronie ukrytej za TORem~\cite{huntresslabs_crticial_2021}.
 \end{enumerate}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{rysunki/obnjdumpagenta.png}
-    \caption{Miejsce w pliku binarnym \texttt{agent.exe}, w którym wywoływany jest \texttt{MsMpeng} oraz ładowany plik \texttt{.dll}. }
+    \caption{Miejsce w pliku binarnym \texttt{agent.exe}, w którym wywoływany jest \texttt{MsMpeng} oraz ładowany plik \texttt{.dll}\protect \footnotemark. }
     \label{fig:enter-label}
 \end{figure}
-Innym znanym RaaS jest \foreignquote{english}{DarkSide} używany przez grupę \foreignquote{english}{CARBON SPIDER}. Do niedawna skupiał się głownie na atakach maszyn Windowsowych, niedawno rozszerzając się na systemy Linux, VMware ESXi i vCenter~\cite{darkside}. Wirus w wersji Windowsowej obchodzi zabezpieczenia kontroli użytkownika za pomocą interfejsu \texttt{CMSTPLUA COM}~\footnote{Takie obejście można dokonać programem https://github.com/tijme/cmstplua-uac-bypass}, następnie sprawdza na podstawie lokalizacji i języka systemu w celu ominięcia ataku na maszynę z jednej z byłych republik radzieckich. Program podejmuje potem następujące kroki:
+\footnotetext{\url{https://ik.imagekit.io/qualys/wp-content/uploads/2021/07/Fig.-5-Write_resource_Create_process.png}}
+Innym znanym RaaS jest \foreignquote{english}{DarkSide} używany przez grupę \foreignquote{english}{CARBON SPIDER}. Do niedawna skupiał się głownie na atakach maszyn Windowsowych, niedawno rozszerzając się na systemy Linux, VMware ESXi~i~vCenter~\cite{darkside}. Wirus w wersji Windowsowej obchodzi zabezpieczenia kontroli użytkownika za pomocą interfejsu \texttt{CMSTPLUA COM}\footnote{Takie obejście można dokonać programem \url{https://github.com/tijme/cmstplua-uac-bypass}}, następnie sprawdza na podstawie lokalizacji~i~języka systemu~w~celu ominięcia ataku na maszynę z jednej z byłych republik radzieckich. Program podejmuje potem następujące kroki:
 \begin{enumerate}
     \item tworzy plik \texttt{LOG.<id użytkownika>.TXT} w którym przechowuje dane tymczasowe na temat progresu ataku,
-    \item usuwa pliki w koszu, programy antywirusowe i zapewniające bezpieczeństwo oraz zamyka procesy blokujące mu dostęp do danych użytkownika,
+    \item usuwa pliki w koszu, programy antywirusowe~i~zapewniające bezpieczeństwo oraz zamyka procesy blokujące mu dostęp do danych użytkownika,
     \item rozpoczyna szyfrowanie algorytmem \texttt{Salsa20} przy pomocy losowo wygenerowanego klucza macierzowego,
     \item klucz macierzowy jest szyfrowany zakodowanym na twardo kluczem RSA, a następnie łączony z zaszyfrowanym plikiem,
     \item pozostawia plik \texttt{README.<id użytkownika>.TXT} w którym wskazuje stronę ukrytą za TORem, na której ofiara ma dokonać płatność w BTC lub XMR.
@@ -78,14 +83,16 @@ Innym znanym RaaS jest \foreignquote{english}{DarkSide} używany przez grupę \f
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\linewidth]{rysunki/tapeta.png}
-    \caption{W wyniku działania wirusa tapeta użytkownika zostaje zmieniona na taką, jak widać na obrazku..}
+    \caption{W wyniku działania wirusa tapeta użytkownika zostaje zmieniona na taką, jak widać na obrazku\protect \footnotemark.}
     \label{fig:enter-label}
 \end{figure}
+\footnotetext{\url{https://staticfiles.acronis.com/images/content/5cd67c66ec1401b8e67aee9e1bb04cc4.webp}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Istniejące techniki wykrywania i obrony przed ransomware}
+\label{sec:techniques}
 Niezależnie od tego czy atakujący korzysta z techniki \foreignquote{english}{living off the land} lub stara się spowodować starty w możliwie najmniejszym przedziale czasowym, 
 kluczem w minimalizacji kosztów ataku ransomware najważniejsza jest szybka reakcja. Aby to osiągnąć należy podjąć inteligentną strategię, która doprowadzi do możliwie jak najwcześniejszego wykrycia ataku.
-Jeśli administrator zostanie poinformowany dostatecznie wcześnie o zagrożeniu, będzie możliwa izolacja, a pa następnie eliminacja zagrożenia. Takie podejście w połączeniu z 
+Jeśli administrator zostanie poinformowany dostatecznie wcześnie o zagrożeniu, będzie możliwa izolacja, a następnie eliminacja zagrożenia. Takie podejście w połączeniu ze 
 zdyscyplinowanym harmonogramem kopii zapasowych, jest w stanie zredukować straty niemalże do zera.
 \newline
 Wyróżnia się trzy główne metody wykrywania ataku: poprzez sygnaturę plików, poprzez analizę nietypowego dla systemu zachowania oraz poprzez monitorowanie ruchu sieciowego~\cite{vehabovic_ransomware_2022}.
@@ -93,13 +100,14 @@ Wyróżnia się trzy główne metody wykrywania ataku: poprzez sygnaturę plikó
 \subsection{Wykrywanie poprzez sygnaturę plików}
 Zasada działania tego typu wykrywania jest bardzo prosta. Oprogramowanie ma pewne unikalne cechy, na podstawie których wyliczana jest jego sygnatura. Do tych cech należą zakodowane na twardo nazwy domen, adresy 
 IP oraz inne identyfikatory. Typowo także wykorzystywana jest wartość funkcji skrótu. Aby metoda ta mogła być skuteczna musi istnieć często aktualizowana baza danych zawierająca sygnatury wszystkich napotkanych 
-typów ransomware. Niestety sposób ten jest ograniczony do wirusów napotkanych w przeszłości i nie jest nim możliwe wykrycie unikalnego zagrożenia.
+typów ransomware. Niestety sposób ten jest ograniczony do wirusów napotkanych w przeszłości~i~nie jest nim możliwe wykrycie unikalnego zagrożenia.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.75\linewidth]{rysunki/sygnatura.png}
-    \caption{Tradycyjne antywirusy tak jak pokazany na obrazku Acronis, korzystają z metody wykrywania poprzez sygnaturę.}
+    \includegraphics[width=0.65\linewidth]{rysunki/sygnatura.png}
+    \caption{Tradycyjne antywirusy tak jak pokazany na obrazku Acronis, korzystają z metody wykrywania poprzez sygnaturę\protect\footnotemark.}
     \label{fig:enter-label}
 \end{figure}
+\footnotetext{\url{https://staticfiles.acronis.com/images/content/c110e0139779aec495bb2bd6e96ee4cd.webp}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Wykrywanie poprzez analizę zachowania systemu}
 \label{sec:behav}
@@ -116,24 +124,24 @@ może być wiele zdarzeń, z których najbardziej charakterystyczne są:
     \item duży ruch w katalogach domowych użytkowników lub w \texttt{/tmp},
     \item zmiana atrybutów i właścicieli plików, katalogów czy punktów montowania dysków.
 \end{itemize}
-Jedną z najpowszechniejszych metod, używanym przez atakujących do powiadomienia ofiary o ataku i metodzie odzyskania dostępu do danych 
+Jedną z najpowszechniejszych metod, używanym przez atakujących do powiadomienia ofiary o ataku~i~metodzie odzyskania dostępu do danych 
 jest pozostawienie pliku tekstowego w miejscu łatwym do znalezienia np. w 
 katalogu domowym użytkownika. Inną jest tworzenie pliku tymczasowego przechowującego 
 stan zaawansowania ataku. Ze względu na to, część metod wykrywania ransomware skupia się
 na wyszukiwaniu tego typu plików, na podstawie treści techniką 
-\foreignquote{english}{bag-of-words}~\footnote{Jest to technika przedstawienia 
+\foreignquote{english}{bag-of-words}\footnote{Jest to technika przedstawienia 
 tekstu w modelu nieułożonej kolekcji słów. Wykorzystuje się ją m.in. w przetwarzaniu 
 języka naturalnego.} w celu odnalezienia korelacji między terminami typowymi dla 
 takich dokumentów np. \foreignquote{english}{encrypted}, \foreignquote{english}{ransom}
 etc.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Wykrywanie poprzez analizę ruchu sieciowego}
-Wykrywanie poprzez analizę ruchu sieciowego polega na ograniczenia analizy behawioralnej do wyłącznie monitorowania adresatów i treści pakietów komunikacji sieciowej.
-Szczególne zainteresowanie stanowią transfery danych do maszyn o nieznanych i podejrzanych adresach
+Wykrywanie poprzez analizę ruchu sieciowego polega na ograniczenia analizy behawioralnej do wyłącznie monitorowania adresatów~i~treści pakietów komunikacji sieciowej.
+Szczególne zainteresowanie stanowią transfery danych do maszyn o nieznanych~i~podejrzanych adresach
 oraz domenach. Zgodnie z techniką \foreignquote{english}{living off the land}, atakujący stara się
 możliwe minimalizować komunikację z serwerami zewnętrznymi które mogą zostać uznane za podejrzane. Mimo to 
-znakomita większość narzędzi hakerskich, jest ogólnodostępna i dobrze znana w branży
-cyberbezpieczeństwa i tym samym łatwa do wykrycia~\cite{sans_secure}.  
+znakomita większość narzędzi hakerskich, jest ogólnodostępna~i~dobrze znana w branży
+cyberbezpieczeństwa~i~tym samym łatwa do wykrycia~\cite{sans_secure}.  
 \begin{table}[H]
     \centering
     \begin{tabular}{ll}
@@ -147,12 +155,13 @@ cyberbezpieczeństwa i tym samym łatwa do wykrycia~\cite{sans_secure}.
     rclone                          & rclone.org                   \\
     WinSCP                          & winscp.net                  
     \end{tabular}
-    \caption{Tabela popularnych narzędzi używanych przez operatorów ransomware i odpowiadające im strony. Dane pochodzą ze strony: https://lots-project.com/}
+    \caption{Tabela popularnych narzędzi wykorzystywanych w atakach ransomware\protect\footnotemark.}
 \end{table}
+\footnotetext{Dane pochodzą ze strony: \url{https://lots-project.com/}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Podstawy działania systemów plików}
-Struktura i działanie systemu plików na Linuksach jest bardzo szerokim tematem.
-Na potrzeby analizy behawioralnej ataku ransomware przybliżę w tej sekcji po krótce działanie i 
+Struktura~i~działanie systemu plików na Linuksach jest bardzo szerokim tematem.
+Na potrzeby analizy behawioralnej ataku ransomware przybliżę w tej sekcji po krótce działanie~i~
 wybrane, interesujące szczegóły implementacyjne.
 \subsection{Skrócony opis działania systemu plików}
 Najpopularniejsze dystrybucje systemu Linux korzystają w większości z systemu plików o nazwie \texttt{ext4}.
@@ -160,30 +169,32 @@ Wprowadzony do repozytorium jądra systemowego w 2008 roku, zyskał wielkie powa
 danych oraz ulepszeniu systemu księgowania operacji, wprodzanego w \texttt{ext3}. Księgowanie operacji w systemie plików
 polega na przechowywaniu zapisów jako \emph{transakcji}. Dopiero jeśli transakcja zakończy zapisywanie na dysk, jej dane 
 zostają wprowadzone na system plików~\cite{ext4}. W efekcie oznacza to, że w wypadku zaniechania działania
-systemu w trakcie zapisu, transakcja zostanie cofnięta po ponownym rozruchu i tym samym zachowana zostanie spójność systemu plików.
+systemu w trakcie zapisu, transakcja zostanie cofnięta po ponownym rozruchu~i~tym samym zachowana zostanie spójność systemu plików.
 \newline
 Obsługa wielu rodzajów systemu plików jest możliwa dzięki istnieniu \emph{virtualnego systemu plików}. 
 Jest on warstwą abstrakcji pomiędzy konkretnymi jej implmentacjami, a aplikacjami klienckimi.
-Dzięki temu możliwa jest spójna i ujednolicona interakcja z systemem plików oraz interoperowalność między różnymi jego implementacjami.~\cite{kernel}
+Dzięki temu możliwa jest spójna~i~ujednolicona interakcja z systemem plików oraz interoperowalność między różnymi jego implementacjami~\cite{kernel}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\linewidth]{rysunki/vfs.png}
-    \caption{Rola wirtualnego systemu plików w operacji kopiowania.
-    Źródło: \foreignquote{english}{Understanding Linux Kernel 3rd edition}, Figure 12-1 s. 457.} 
+    \caption{Rola wirtualnego systemu plików w operacji kopiowania\protect \footnotemark.} 
     \label{fig:enter-label}
 \end{figure}
+\footnotetext{\emph{Understanding Linux Kernel 3rd edition}, Figure 12-1 s. 457.}
+
 Ogólna zasada działania wirtualnego systemu plików polegna na podmienianiu przez nią typowych wywołań systemowych
 takich jak \texttt{read} lub \texttt{write} na funkcje natywne dla konkretnego systemu plików np. \texttt{ZFS} lub wcześniej wymieniony \texttt{EXT4}.
 Każda implementacja musi móc przetłumaczyć swoją wewnętrzną strukturę organizacjną na model ogólny wirtualnego systemu plików~\cite{kernel}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\linewidth]{rysunki/interakcjavfs.png}
-    \caption{Interkacja pomiędzy procesami a objektami wiortualnego systemu plików.
-    Źródło: \foreignquote{english}{Understanding Linux Kernel 3rd edition}, Figure 12-2 s. 460.} 
+    \caption{Interkacja pomiędzy procesami a objektami wirtualnego systemu plików\protect \footnotemark.} 
     \label{fig:enter-label}
 \end{figure}
-Infromacje na temat interakcji pomiędzy otwartym plikiem a procesem są przechowywane w charakterystycznym dla procesu otwierającego plik \foreignquote{english}{file object}.
-Informacje te istnieją \emph{wyłącznie} w pamięci jądra systemu kiedy plik jest otwarty przez proces. 
+\footnotetext{\emph{Understanding Linux Kernel 3rd edition}, Figure 12-2 s. 460.}
+
+Infromacje na temat interakcji pomiędzy otwartym plikiem a procesem są przechowywane~w~charakterystycznym dla procesu otwierającego plik \foreignquote{english}{file object}.
+Informacje te istnieją \emph{wyłącznie}~w~pamięci jądra systemu kiedy plik jest otwarty przez proces. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Monitorowanie zmian na systemie plików}
 \label{sec:monitorowanie}
@@ -192,9 +203,10 @@ na ich różnorodność. Utrzymyany jest więc indeks wskaźników do odpowienic
 między systemem plików a jądrem pozwala na śledzienie wywołań oprogramowaniem pośrednim. Jądro Linux zawiera w sobie dwie ciekawe
 z poziomu tematu pracy impelmentacje takich \enquote{pośredników}: \foreignquote{english}{inotify subsystem} oraz \foreignquote{english}{Linux Auditing Framework}.
 \subsubsection{API inotify}
+\label{sec:inotify}
 Podsystem inotify został stworzony z myślą o monitorowaniu oraz powiadomianiu o zmianach na dysku~\cite{love_linux_2013}. 
 Jego głównym przypadkiem użycia jest automatycze aktualizowanie widoków katalogów, plików konfiuguracyjncyh, zmian
-logów systemowych i tym podobnych. Rozwiązanie to znajduje się w kodzie źródłowym jądra Linux od sierpnia 2005 roku. Interfejs programowalny
+logów systemowych~i~tym podobnych. Rozwiązanie to znajduje się w kodzie źródłowym jądra Linux od sierpnia 2005 roku. Interfejs programowalny
 dla tego nardzędzia zawiera się w biliotece \texttt{inotify-tools}, które zawiera w sobię również pakiet narzędzi będąch gotowymi implementacjami funkcjonalności API~\cite{biancalana_inotfy}.
 \begin{lstlisting}[language=bash,
     backgroundcolor=\color{EEGold!5!white},
@@ -216,7 +228,7 @@ dla tego nardzędzia zawiera się w biliotece \texttt{inotify-tools}, które zaw
     [1]  + 13180 continued  ./inotify-test.sh
     File has been created!
 \end{lstlisting}
-Niestety rowziwązanie to nie jest perefekcyjne i ma swoje limity. Do nich należą:
+Niestety rowziwązanie to nie jest perefekcyjne~i~ma swoje limity. Do nich należą:
 \begin{itemize}
     \item brak wsparcia dla rekurencyjnego obserwowania ścieżek,
     \item \enquote{gubienie} niektórych wydarzeń dla starszych wersji jądra Linux,
@@ -225,39 +237,41 @@ Niestety rowziwązanie to nie jest perefekcyjne i ma swoje limity. Do nich nale�
 \end{itemize}
 \newpage
 \subsubsection{Linux Auditing Framework}
+\label{sec:auditd}
 Projekt Linux Auditing Framework to podsystem wbudowany w jądro systemu Linux, którego zadaniem jest przechwytywanie,
 a następnie logowanie operacji systemowych. Jego możliwości nie ograniczają się wyłacznie do 
-obserwacji systemu plików. Jest on w pełni zgodny z CAPP~\footnote{Controlled Access Protection Profiles to środowisko służące do niezależnej oceny, analizy i testowania produktów w celu ustanowienia wymagań bezpieczeństwa.}, a
+obserwacji systemu plików. Jest on w pełni zgodny z CAPP\footnote{Controlled Access Protection Profiles to środowisko służące do niezależnej oceny, analizy i testowania produktów w celu ustanowienia wymagań bezpieczeństwa.}, a
 więc może być używany jako wiarygodne źródło informacji o stanie systemu. Informacje można pobierać dzięki aplikacji
-po stronie użytkownika o nazwie \texttt{auditd}. Ten z kolei ma możliwość zapisania logów do pliku lub stworzyć gniazdko UNIXowe
-do którego inna aplikacja w przestrzeni użytkownika może się podłączyć i zczytywać dane.
+po stronie użytkownika o nazwie \texttt{auditd}. Za pomocą komponentu \texttt{auditd} możliwe jest zapisanie logów do pliku lub wysłanie ich UNIXowym gniazdkiem do innych aplikacji.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\linewidth]{rysunki/audit.png}
-    \caption{Bardzo uproszczony diagram komponentów LAF. \newline Źródło: https://documentation.suse.com/sles/12-SP5/html/SLES-all/cha-audit-comp.html}
+    \caption{Bardzo uproszczony diagram komponentów LAF\protect\footnotemark.}
     \label{fig:enter-label}
 \end{figure}
+\footnotetext{\url{https://documentation.suse.com/sles/12-SP5/html/SLES-all/cha-audit-comp.html}}
+
 Niestety bardzo ciężko jest znaleźć informacje na temat implementacji części systemu która znajduje się w jądrze, ale 
-na podstawie własnej analizy kodu zawartego w repozytorium głównym projektu~\footnote{Pod adresem: https://github.com/linux-audit/audit-kernel}
+na podstawie własnej analizy kodu zawartego w repozytorium głównym projektu\footnote{Pod adresem: \url{https://github.com/linux-audit/audit-kernel}}
 , w szczególności w plikach \texttt{audit.c}, \texttt{audit\_fsnotify.c} oraz \texttt{auditsc.c} w folderze \texttt{kernel}, mogę z dużą
-dozą pewności stwierdzić, że infromacje wykryte tym narzędziem są wiarygodne i przydatne z perspektywy tematu pracy.
-W branży administracji systemami jest to narzędzie dobrze znane i poważane dzięki możliwościom łatwej i bezinwazyjnej konfiguracji.
+dozą pewności stwierdzić, że infromacje wykryte tym narzędziem są wiarygodne~i~przydatne z perspektywy tematu pracy.
+W branży administracji systemami jest to narzędzie dobrze znane~i~poważane dzięki możliwościom łatwej~i~bezinwazyjnej konfiguracji.
 Popularne dystrybucje serwerowe takie jak Ubuntu Server, SLES, Red Hat oraz Fedora wspierają w pełni funkcjonalności
 związane z monitorowaniem systemu plików. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Krótka charakterystyka plików wykonywalnych}
-System Linux pliki wykonywalne zapisuje i odczytuje w formacie \texttt{ELF} czyli 
+System Linux pliki wykonywalne zapisuje~i~odczytuje w formacie \texttt{ELF} czyli 
 \foreignquote{english}{Executable Linking Format}~\cite{linux_foundation_tool_nodate}.
-Najciekawszym elementem teo formatu, z punktu widzenia tej pracy, jest nagłówek. Mimo, że nie zawiera tak wielu informacji co
+Najciekawszym elementem tego formatu, z punktu widzenia tej pracy, jest nagłówek. Mimo, że nie zawiera tak wielu informacji co
 nagłówki plików wykonywalnych na systemie Windows, warto przyjrzeć się mu aby móc zidentyfikować obecność
 oprogramowania złośliwego lub narzędzia typowo wykorzystywanego podczas naruszenia bezpieczeństwa systemu.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.45\linewidth]{rysunki/elf.png}
-    \caption{Podział wewnętrzny pliku \texttt{ELF}.\newline
-    Źródło: https://upload.wikimedia.org/wikipedia/commons/7/77/Elf-layout--en.svg}
+    \caption{Podział wewnętrzny pliku \texttt{ELF}\protect\footnotemark.}
     \label{fig:enter-label}
 \end{figure}
+\footnotetext{\url{https://upload.wikimedia.org/wikipedia/commons/7/77/Elf-layout--en.svg}}
 W mojej opinii ciekawą sekcją jest \texttt{.note.gnu.build-id}~\cite{elfman}. Cytując
 \texttt{elf(5)} Linuksowego \texttt{man pages}: \foreignquote{english}{This section is used to hold an ID that uniquely
 identifies the contents of the ELF image.  Different files
@@ -267,7 +281,7 @@ W przeciwieństwie do systemu Windows, gdzie typowo użytkownik pobiera już wcz
 bardzo popularnym rozwiązaniem na Linuksach jest kompilowanie lokalnie. Wyjątkiem są zaufane repozytoria, do których dostęp
 uzyskuje się przez menadżer pakietów dodawany do danej dystrybucji, np. \texttt{apt}. Mimo, że możliwa jest identyfikacja 
 zawartości pliku binarnego poprzez wyliczenie jej wartości funkcji skrótu w niedługim czasie funkcją md5, identyfikator kompilacji
-dla tych samych warunków kompilacji i zawartości kodu wykonywalnego, będzie dokładnie taki sam. Informacja ta może być wykorzystywana do
+dla tych samych warunków kompilacji~i~zawartości kodu wykonywalnego, będzie dokładnie taki sam. Informacja ta może być wykorzystywana do
 identyfikacji tego czy podejrzany plik binarny został skompilowalny lokalnie z kodu źródłowego.
 \newpage
 \begin{lstlisting}[language=bash,
@@ -287,36 +301,36 @@ identyfikacji tego czy podejrzany plik binarny został skompilowalny lokalnie z 
 \end{lstlisting}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Metody analizy statystyk systemu plików}
-Ta praca skupia się na metodach analizy opisanych po krótce w rozdziale \hyperref[sec:behav]{Wykrywanie poprzez analizę zachowania systemu}.
-Metody te zgodnie z naturą pracy będą skupione na treści i zmianach w systemie plików. 
+\label{sec:metody}
 Wraz ze wzrostem ryzyka ataków ransomware, wzrosła też ilość prac opisujących możliwe metody wykrywania ataków
-na podstawie statystyk systemowych. W tym rozdziale chciałbym wymienić i po krótce wytłumaczyć, w mojej opinii, najciekawsze z nich.
+na podstawie statystyk systemowych. W tym rozdziale chciałbym wymienić~i~po krótce wytłumaczyć,~w~mojej opinii, najciekawsze z nich.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Analiza entropii pliku}
+\label{sec:entropia}
 W pracy \foreignquote{english}{Differential area analysis for ransomware
 attack detection within mixed file datasets}~\cite{davies_differential_2021} przedstawiona jest 
 metoda potencjalnego wykrycia tego czy plik został zaszyfrowany poprzez obliczenie entropii pliku dla różnych wielkości nagłówka.
-Nagłówek w kontekście tej metody po prostu oznacza ilość bajtów braną pod uwagę w obliczaniu entropii, a niekoniecznie
-twardo sprecyzowany w specyfikacji rodzaju pliku obszar na jego początku. Maksymalna możliwa entropia per bajt dla pliku jest równa ośmiu bitom na jeden bajt,
+Nagłówek~w~kontekście tej metody po prostu oznacza ilość bajtów braną pod uwagę~w~obliczaniu entropii, a niekoniecznie
+twardo sprecyzowany~w~specyfikacji rodzaju pliku obszar na jego początku. Maksymalna możliwa entropia per bajt dla pliku jest równa ośmiu bitom na jeden bajt,
 wartość sugerująca kompletnie losową naturę pliku. Wzór na entropię $H$~\cite{6773024} to:
 $$
 H(X) = - \sum_{i=1}^{n} P(x_{i})log_{2}P(x_{i})
 $$
-gdzie $n$ jest liczbą bajtów w próbce, a $P(x_{i})$ to prawdopodobieństwo wystąpienia bajtu $i$ w strumieniu bitów.
-Wyobraźmy sobie, że mamy wygenerowane 150 bajtowy plik który został wygenerowany losowo. Jego wykres entropi naliczonej 
+gdzie $n$ jest liczbą bajtów~w~próbce, a $P(x_{i})$ to prawdopodobieństwo wystąpienia bajtu $i$~w~strumieniu bitów.
+Wyobraźmy sobie, że mamy 150 bajtowy plik który został wygenerowany losowo. Jego wykres entropi naliczonej 
 od długości nagłówka $x$ będzie przypominał funkcję $log_{2}(x)$.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\linewidth]{rysunki/randomy.png}
+    \includegraphics[width=0.65\linewidth]{rysunki/randomy.png}
     \caption{Wykres entropii od długości nagłówka dla pliku zawierającego zupełnie losowe dane.}
     \label{fig:enter-label}
 \end{figure}
-Dla rzeczywistych plików wartość entropii będzie rosnąć w mniejszym tępie, ze względu na powtarzające
-się schematy w informacji.
+Dla rzeczywistych plików wartość entropii będzie rosnąć~w~mniejszym tępie, ze względu na powtarzające
+się schematy~w~informacji.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\linewidth]{rysunki/zestawienie.png}
-    \caption{Zestawienie wykresów entropii od długości nagłówka. Jako plik przykładowy wybrałem skrypt z sekcji \hyperref[sec:monitorowanie]{Monitorowanie zmian na systemie plików}.}
+    \includegraphics[width=0.65\linewidth]{rysunki/zestawienie.png}
+    \caption{Zestawienie wykresów entropii od długości nagłówka. Jako plik przykładowy wybrałem skrypt~z~sekcji \hyperref[sec:monitorowanie]{Monitorowanie zmian na systemie plików}.}
     \label{fig:enter-label}
 \end{figure}
 Miarą tego jak duże jest prawdopodobieństwo, że plik został zaszyfrowany jest pole między tymi dwoma wykresami.
@@ -327,27 +341,29 @@ Miarą tego jak duże jest prawdopodobieństwo, że plik został zaszyfrowany je
     \label{fig:enter-label}
 \end{figure}
 W pracy \foreignquote{english}{Differential area analysis for ransomware
-attack detection within mixed file datasets} zasugerowane są pewne wartości klasyfikacyjne, ustalone na podstawie
-dokładności wykrycia zaszyfrowanego pliku w zbiorach testowych.
+attack detection within mixed file datasets}~\cite{davies_differential_2021} zasugerowane są pewne wartości klasyfikacyjne, ustalone na podstawie
+dokładności wykrycia zaszyfrowanego pliku~w~zbiorach testowych.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.85\linewidth]{rysunki/wycinek.png}
-    \caption{Skuteczność dla wybranych kryteriów klasyfikacji na długość nagłówka w bajtach. Źródło: Differential area analysis for ransomware
-    attack detection within mixed file datasets, Table 7, Table 8, s. 11.}
+    \caption{Skuteczność dla wybranych kryteriów klasyfikacji na długość nagłówka~w~bajtach\protect\footnotemark.}
     \label{fig:enter-label}
 \end{figure}
-Metoda ta wydaje się być bardzo obiecująca lecz jest ograniczona wymogiem wielkości pliku. Jak widać skuteczność jest większa dla plików o rozmiarze większych niż 32 bajty.
+\footnotetext{\emph{Differential area analysis for ransomware
+attack detection within mixed file datasets}, Table 7, Table 8, s. 11.}
+
+Metoda ta wydaje się być bardzo obiecująca lecz jest ograniczona wymogiem wielkości pliku. Jak widać skuteczność jest lepsza dla plików o rozmiarze większym niż 32 bajty.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Automatyczna analiza behawioralna poprzez audyt systemu}
 W pracy \foreignquote{english}{Automated Behavioral Analysis of Malware
 A Case Study of WannaCry Ransomware}~\cite{8260673} opisana jest metoda identyfikacji ransomware
 poprzez wyciągnięcie z logów audytu podczas rutynowego działania systemu. W przypadku tej pracy
 poszukiwanie abnormalnych zachowań systemu było oparte \textbf{wyłącznie} na wiedzy o tym, że atak ma miejsce.
-Aplikacja do audytowania systemu we wcześniej wymienionej pracy ma podobne możliwości do wymienionego w sekcji \hyperref[sec:monitorowanie]
+Aplikacja do audytowania systemu we wcześniej wymienionej pracy ma podobne możliwości do wymienionego~w~sekcji \hyperref[sec:monitorowanie]
 {Monitorowanie zmian na systemie plików} Linux Auditing Framework.\newline
-Przedstawiona w pracy metoda opera się o \foreignquote{english}{Term-Frequency-Inverse-Document-Frequency (TF-IDF)}~\cite{salton_term-weighting_1988} czyli metrykę obliczania 
-wagu słów w oparciu o liczbę wystąpień, dostosowaną do faktu generalnie częstszego występowania niektórych słów.
-Jest to metoda często wykorzysytwana w jako forma wydobywania informacji z tekstów m.in. \foreignquote{english}{text miningu}.
+Przedstawiona~w~pracy metoda opera się o \foreignquote{english}{Term-Frequency-Inverse-Document-Frequency (TF-IDF)}~\cite{salton_term-weighting_1988} czyli metrykę obliczania 
+wagu słów~w~oparciu o liczbę wystąpień, dostosowaną do faktu generalnie częstszego występowania niektórych słów.
+Jest to metoda często wykorzysytwana~w~jako forma wydobywania informacji z tekstów m.in. \foreignquote{english}{text miningu}.
 TF-IDF jest produktem dwóch statystyk: częstości występowania słowa oraz odwrotnej częstości dokumentu.
 Częstotliwość występowania słowa zapisuje się wzorem:
 $$
@@ -357,33 +373,36 @@ a odwrotną częstotliwość dokumentu:
 $$
 idf(t,D) = log \frac{N}{1 + |{d \in D : t \in d}|}
 $$
-gdzie słowo $t$, występujące w dokumencie $d$ i wielkości zbuioru dokumentów (corpus) $N$, występuje z częstotliwością $f(t,d)$.
+gdzie słowo $t$, występujące~w~dokumencie $d$~i~wielkości zbuioru dokumentów (corpus) $N$, występuje z częstotliwością $f(t,d)$.
 \newline
 Niestety metoda ta nie przynosi szczególnych efektów. We wcześniej wymienionej pracy, zostały wykonane dwa eksperymenty: 
-pierwszy w którym były wyłącznie logi z działania wirusa WannaCry oraz normalnych zachowań w systemie w osobnych dokumentach, drugi
-w którym przemieszane były działania wirusa z normalnym działaniem systemu w tym samym dokumencie.
+pierwszy~w~którym były wyłącznie logi z działania wirusa WannaCry oraz normalnych zachowań~w~systemie~w~osobnych dokumentach, drugi
+w którym przemieszane były działania wirusa z normalnym działaniem systemu~w~tym samym dokumencie.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.3\linewidth]{rysunki/wannashit.png}
-    \caption{Tabela plików tymczasowych wykorzystywanych przez wirus WannaCry. Źródło: 
-    Automated Behavioral Analysis of Malware
-A Case Study of WannaCry Ransomware, Table I, s. 2.}
+    \caption{Tabela plików tymczasowych wykorzystywanych przez wirus WannaCry\protect\footnotemark.}
     \label{fig:enter-label}
 \end{figure}
+\footnotetext{\emph{Automated Behavioral Analysis of Malware
+A Case Study of WannaCry Ransomware}, Table I, s. 2.}
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.85\linewidth]{rysunki/failed-exp.png}
     \caption{Tabela wyników z eksperymentu. Eksperyment pierwszy i drugi są tutaj nazwane \foreignquote{english}{case 1} i \foreignquote{english}{case 2}.
-    Rankingi są wyliczone na podstawie wartości wagi TF-IDF ze wszystkich dokumentów. Źródło: 
-    Automated Behavioral Analysis of Malware
-A Case Study of WannaCry Ransomware, Table V, s. 5.}
+    Rankingi są wyliczone na podstawie wartości wagi TF-IDF ze wszystkich dokumentów\protect\footnotemark.}
     \label{fig:enter-label}
 \end{figure}
+\footnotetext{\emph{Automated Behavioral Analysis of Malware
+A Case Study of WannaCry Ransomware}, Table V, s. 5.}
+
 Jak widać z tabelki, waga informacji o działaniu ransomware znacznie zmalała po połączeniu
-z logami działania systemu. Audyt systemu może być przydatny dla zaznajomionego z infrastrukturą
-administratora lecz sama jej analiza nie jest skuteczna w wykrywaniu ransomware. Tym samym
-informacja o dokonaniu operacji na systemie plików, sama w sobie nie wystarczy do wykrycia ataku.
+z logami działania systemu. Audyt systemu może być przydatny dla zaznajomionego~z~infrastrukturą
+administratora lecz sama jej analiza nie jest skuteczna~w~wykrywaniu ransomware. Tym samym
+informacja o dokonaniu operacji na systemie plików, sama~w~sobie nie wystarczy do wykrycia ataku.
 \subsection{Analiza podobieństwa pliku wykonywalnego}
+\label{sec:binaries}
 Praca \foreignquote{english}{A Framework for Analyzing Ransomware using
 Machine Learning}~\cite{8628743} przedstawia jako daną do przetworzenia 
 przez model sztucznej inteligencji podobieńtwo cosinusowe wyliczone na 
@@ -395,7 +414,7 @@ będzie wynosić:
 $$
 cos(\theta) = \frac{P \cdot Q}{|P||Q|} = \frac{\sum_{i = 1}^{n} P_{i} \cdot Q_{i}}{\sqrt{\sum_{i = 1}^{n}P^{2}_{i}} \sqrt{\sum_{i = 1}^{n}Q^{2}_{i}}}
 $$
-W tym wypadku $P$ i  $Q$ to dwa pliki wykonywalne, mogą to być wirusy lub zwyczajne programy codziennego użytku. Wektory te zostają utworzone na 
+W tym wypadku $P$~i~ $Q$ to dwa pliki wykonywalne, mogą to być wirusy lub zwyczajne programy codziennego użytku. Wektory te zostają utworzone na 
 podstawie częstotliwości występowania instrukcji (z argumentami) kodu asemblera zdobytego z pliku binarnego, programem
 \texttt{objdump}. Przykładowo dla klasycznego programu:
 \begin{lstlisting}[language=C,
@@ -432,9 +451,9 @@ do kodu asemblera będzie wyglądał w taki sposób:
   401076:	66 2e 0f 1f 84 00 00 	cs nopw 0x0(%rax,%rax,1)
   40107d:	00 00 00 
 \end{lstlisting}
-Aby przedstawić jak wygląda ta metoda, pozwoliłem sobie uprościć jej implementację o wyliczenie
-częstotliwości występowania, nie słów, a bajtów. Robię tak ponieważ wiem, że w przypadku rozpatrywanych programów każda instrukcja
-ma długość jednego bajta. Dany jest program z \hyperref[lst:ello]{listingu 3} oraz:
+Aby przedstawić jak wygląda ta metoda, spreparowałem plik zawierający wyłącznie instrukcje asemblerowe z argumentami.
+Z nich wyliczyłem częstość występowania poszczególnych słów, a następnie wyliczyłem współczynnik podobieństwa ze wzoru przedstawionego wcześniej. 
+Dany jest program z \hyperref[lst:ello]{listingu 3} oraz:
 \begin{lstlisting}[language=C,
     backgroundcolor=\color{EEGold!5!white},
     caption={Program podobny do programu z listingu 3. Jedyną różnicą jest obecność zmiennej $i$.},
@@ -447,19 +466,19 @@ ma długość jednego bajta. Dany jest program z \hyperref[lst:ello]{listingu 3}
         return 0;
     }
 \end{lstlisting}
-Wyliczamy prawdopodobieństwo na specjalnie spreparowanym pliku z którego wyjąłem wyłącznie sekcję
-z instrukcjami i jej argumentami:
+Ich podobieństwo wyliczone ze wcześniej wymienionego wzoru wynosi $cos(\theta) = 0.996289145765327$, czyli jest bardzo duże co pokrywa się z oczekiwaniami.
+Jego wartość \emph{odzwierciedla} różnicę pomiędzy dwoma plikami, więc miara ta jest czuła na nawet niewielkie zmiany.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\linewidth]{rysunki/p1.png}
+    \includegraphics[width=0.69\linewidth]{rysunki/p1.png}
     \caption{Prawdopodobieństwa wystąpienia bajtów o konkretnej wartości w pliku z listingu 3.}
     \label{fig:enter-label}
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\linewidth]{rysunki/p2.png}
+    \includegraphics[width=0.69\linewidth]{rysunki/p2.png}
     \caption{Prawdopodobieństwa wystąpienia bajtów o konkretnej wartości w pliku z listingu 5.}
     \label{fig:enter-label}
 \end{figure}
-Ich podobieństwo wyliczone ze wzoru na prodobienśtwo cosinusowe wynosi $cos(\theta) = 0.997589145765327$, czyli jest bardzo duże co pokrywa się z oczekiwaniami. Jest to obiecująca metoda, która w przeciwieństwie do sprawdzania sygnatury pliku funkcją skrótu, jest adaptowalna na małe i średnie zmiany w wykrywaniu historycznie występujących zagrożeń. 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Jest to obiecująca metoda, która w przeciwieństwie do sprawdzania sygnatury pliku funkcją skrótu, adaptuje się do małych~i~średnich zmian w historycznie występujących zagrożeniach.
+\afterpage{\blankpage}
