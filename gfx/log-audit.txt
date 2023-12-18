@@ -1,0 +1,36 @@
+2023-12-17T22:33:07.316Z INFO  [linux_fs_audit::view::sqlite_view] Inserting {"user":"maciek","group":"maciek","executable":"/usr/bin/rm","syscall":"unlinkat","timestamp":"1702852387","key":"WRITE"}
+2023-12-17T22:33:07.335Z INFO  [linux_fs_audit::view::sqlite_view] Opening an Sqlite connection
+2023-12-17T22:33:07.344Z INFO  [linux_fs_audit::view::sqlite_view] Opening an Sqlite connection
+2023-12-17T22:33:07.351Z INFO  [linux_fs_audit::controller::unix_port] Unix stream is readable.
+2023-12-17T22:33:07.351Z INFO  [linux_fs_audit::controller::unix_port] Unix stream is readable.
+2023-12-17T22:33:07.351Z WARN  [linux_fs_audit::controller::unix_port] Blocking error while reading from socket
+2023-12-17T22:33:09.762Z INFO  [linux_fs_audit::controller::unix_port] Unix stream is readable.
+2023-12-17T22:33:09.762Z INFO  [linux_fs_audit::view::sqlite_view] Opening an Sqlite connection
+2023-12-17T22:33:09.763Z INFO  [linux_fs_audit::view::sqlite_view] Inserting {"user":"maciek","group":"maciek","executable":"/usr/bin/bash","syscall":"openat","timestamp":"1702852389","key":"READ"}
+2023-12-17T22:33:09.781Z INFO  [linux_fs_audit::view::sqlite_view] Opening an Sqlite connection
+2023-12-17T22:33:09.792Z INFO  [linux_fs_audit::controller::unix_port] Unix stream is readable.
+2023-12-17T22:33:09.792Z WARN  [linux_fs_audit::controller::unix_port] Blocking error while reading from socket
+2023-12-17T22:33:12.999Z INFO  [linux_fs_audit::controller::unix_port] Unix stream is readable
+2023-12-17T22:33:12.999Z INFO  [linux_fs_audit::view::sqlite_view] Opening an Sqlite connection
+2023-12-17T22:33:12.999Z INFO  [linux_fs_audit::view::sqlite_view] Inserting {"user":"maciek","group":"maciek","executable":"/usr/bin/zip","syscall":"openat","timestamp":"1702852392","key":"WRITE"}
+2023-12-17T22:33:13.028Z INFO  [linux_fs_audit::view::sqlite_view] Opening an Sqlite connection
+2023-12-17T22:33:13.047Z INFO  [linux_fs_audit::view::sqlite_view] Opening an Sqlite connection
+2023-12-17T22:33:13.053Z INFO  [linux_fs_audit::controller::unix_port] Unix stream is readable.
+2023-12-17T22:33:13.053Z INFO  [linux_fs_audit::view::sqlite_view] Opening an Sqlite connection
+2023-12-17T22:33:13.053Z INFO  [linux_fs_audit::view::sqlite_view] Inserting {"user":"maciek","group":"maciek","executable":"/usr/bin/zip","syscall":"unlink","timestamp":"1702852393","key":"WRITE"}
+2023-12-17T22:33:13.059Z INFO  [linux_fs_audit::view::sqlite_view] Opening an Sqlite connection
+2023-12-17T22:33:13.065Z INFO  [linux_fs_audit::controller::unix_port] Unix stream is readable.
+2023-12-17T22:33:13.065Z INFO  [linux_fs_audit::view::sqlite_view] Opening an Sqlite connection
+2023-12-17T22:33:13.065Z INFO  [linux_fs_audit::view::sqlite_view] Inserting {"user":"unknown","group":"unknown","executable":"/usr/bin/zip","syscall":"ope","timestamp":"1702852393","key":"WRITE"}
+2023-12-17T22:33:13.069Z INFO  [linux_fs_audit::view::sqlite_view] Opening an Sqlite connection
+2023-12-17T22:33:13.077Z INFO  [linux_fs_audit::controller::unix_port] Unix stream is readable.
+2023-12-17T22:33:13.077Z INFO  [linux_fs_audit::view::sqlite_view] Opening an Sqlite connection
+2023-12-17T22:33:13.083Z INFO  [linux_fs_audit::view::sqlite_view] Opening an Sqlite connection
+2023-12-17T22:33:13.088Z INFO  [linux_fs_audit::controller::unix_port] Unix stream is readable.
+2023-12-17T22:33:13.088Z INFO  [linux_fs_audit::view::sqlite_view] Opening an Sqlite connection
+2023-12-17T22:33:13.088Z INFO  [linux_fs_audit::view::sqlite_view] Inserting {"user":"maciek","group":"maciek","executable":"/usr/bin/zip","syscall":"openat","timestamp":"1702852393","key":"READ"}
+2023-12-17T22:33:13.092Z INFO  [linux_fs_audit::view::sqlite_view] Opening an Sqlite connection
+2023-12-17T22:33:13.096Z INFO  [linux_fs_audit::controller::unix_port] Unix stream is readable.
+2023-12-17T22:33:13.096Z INFO  [linux_fs_audit::view::sqlite_view] Opening an Sqlite connection
+2023-12-17T22:33:13.096Z INFO  [linux_fs_audit::view::sqlite_view] Inserting {"user":"maciek","group":"maciek","executable":"/usr/bin/zip","syscall":"openat","timestamp":"1702852393","key":"READ"}
+2023-12-17T22:33:13.100Z INFO  [linux_fs_audit::view::sqlite_view] Opening an Sqlite connection

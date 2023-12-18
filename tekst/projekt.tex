@@ -157,7 +157,8 @@ Ostatnią cechą wartą uwagi jest to,~że~\texttt{auditd} może zostać skonfig
 \begin{lstlisting}[
     backgroundcolor=\color{EEGold!5!white},
     caption={Konfiguracja opcji raportowania. 
-    Więcej informacji można znaleźć na stronie RedHatowej dokumentacji \protect \footnotemark.}]
+    Więcej informacji można znaleźć na stronie RedHatowej dokumentacji \protect \footnotemark.},
+    label={lst:cipendejs}]
     active = yes
     direction = out
     path = builtin_af_unix
@@ -221,7 +222,19 @@ FS Audit Parser dokonuje wyłacznie zapisów do bazy, a Ransomware Scanner wył�
 \end{figure}
 Projekt bazy danych jest bardzo prosty~i~oparty na podstawowych informacjach potrzebnych do implementacji logiki wykrywania ataku zdefiniowanych~w~sekcji \hyperref[sec:wybor]{Wybór odpowiednich statystyk~i~metryk do analizy}. Baza danych ma agregować funkcję przekazywania informacji między komponentami~i~zapisywaniu ich~w~celu prześledzenia danych historycznych na niewielką skalę.
 \newline
-Projekt architektury ze względu na silnie powiązaną dziedzinę z kontekstem technologicznym, nosi znamię pokrewnej do architektury wdrożenia. Prywatnie uważam,~że~nie jest to problemem gdyż powszechnie stosowane rozwiązania~w~cyberbezpieczeństwie \emph{nie mogą} pozwolić sobie na zupełne wyabstrachowanie swojej architektury od dziedziny technologicznej jaką mają obejmować. 
+Projekt architektury ze względu na silnie powiązaną dziedzinę z kontekstem technologicznym, nosi znamię pokrewnej do architektury wdrożenia. Prywatnie uważam,~że~nie jest to problemem gdyż powszechnie stosowane rozwiązania~w~cyberbezpieczeństwie \emph{nie mogą} pozwolić sobie na zupełne wyabstrachowanie swojej architektury od dziedziny technologicznej jaką mają obejmować.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Zabezpieczenia i uwierzytelnianie w systemie}
+Konfiguracaj \texttt{auditd} na którym opiera się opisana w tej pracy aplikacja wymaga uprawnień super usera i co ważniejsze może zostać doprowadzona do stanu nienanuraszolności w bierzącym czasie uruchomienia. W tym ustawieniu wszystkie zasady obserwacji oraz watchery\footnote{Poglądowy wątek z forum w którym użytkownik chce wyłączyć watcher bez ponownego uruchamiania: \url{https://serverfault.com/questions/586230/disable-auditd-immutable-mode-without-rebooting}} są niezmienialne bez restartu systemu. Jest to bardzo duży plus, gdyż wywyższa to zmiany zasad w audycie do rangi decyzji oranizacyjnej. W zależności konfiguracji kanału wyjściowego logów, komponent FS Audit Parser może wymagać uruchomienia w trybie super usera. Jest możliwość ominięcia tego problemu poprzez odpowiednie ustawienie uprawnień odczytu dla gniazdka UNIXowego, którego przykład został pokazany w \hyperref[lst:cipendejs]{listingu 9 sekcji Sposób zbierania i przetwarzania statystyk systemu plików}. Sprawia to, że ponad konfigurację wstępną, administrator nie będzie miał potrzeby ingerencji w działanie systemu jako super user, co jest zdecydowanie czynnikiem zmniejszającym ryzyko powstania potencjalnych luk zabezpieczeń.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Implementacja algorytmów wykrywających podejrzane działania}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{rysunki/states.pdf}
+    \caption{Schemat analizy operacji i plików w obserwowanej ścieżce.}
+    \label{fig:enter-label}
+\end{figure}
+Powyżej przedstawiony diagram opisuje ciąg zdarzeń następujących podczas regularnie ustalonej analizy operacji na systemie plików. Brane pod uwagę jest kilka charakterystycznych scenariuszy opisanych w sekcji \hyperref[sec:charak]{Charakterystyka typowych zmian w systemie plików podczas
+ataku ransomware}. Na podstawie analizy kolejno wykonywana jest bardziej przystosowana do zaobserwowanego zjawiska metoda.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

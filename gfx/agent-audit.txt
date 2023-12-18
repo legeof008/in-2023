@@ -1,0 +1,12 @@
+Strategy evaluations: {"Executable":"Low",
+    "Threshold":"High",
+    "Rename":"Low",
+    "RansomNote":"Low"
+}
+File risk evaluation {
+    "/home/maciek/box/testfile.png":"High",
+    "/home/maciek/box/hellot_there.txt":"Medium",
+    "/home/maciek/box/h1":"Medium",
+    "/home/maciek/box/testfile (copy 1).png":"High",
+    "/home/maciek/box/h2":"Medium"
+}

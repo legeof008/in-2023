@@ -1,6 +1,7 @@
 Bedąc uzbrojonym~w~informacje wymienione we wcześniejszych rozdziałach można ułożyć model działania programu będącego celem tej pracy. Aby to jednak było możliwe należy wybrać najważniejsze informacje o maszynie, sytemie plików i odpowiednie strategie ich użycia.
 
 \section{Charakterystyka typowych zmian~w~systemie plików podczas ataku ransomware}
+\label{sec:charak}
 Z informacji wymienionych~w~\hyperref[sec:monitorowanie]{Historia i ewolucja ataków typu ransomware} oraz~w~sekcji
 \hyperref[sec:techniques]{Istniejące techniki wykrywania i obrony przed ransomware} można wyłuskać kilka punktów interakcji, które aktywują skan jedną~z~ metod przedstawionych~w~\hyperref[sec:techniques]{Istniejące techniki wykrywania i obrony przed ransomware}. Na potrzeby pracy proponuję: 
 \begin{enumerate}
@@ -22,8 +23,8 @@ Aby móc przeanalizować ruch na wycześniej wymienione sposoby potrzebne będą
     \item rodzaju operacji oraz plik wykonywalny który był jej źródłem,
     \item wywołaniu systemowym użytym~w~operacji.
 \end{itemize}
-
-Aby dokonać rzetelnego raportu dla administratora~w~moim przeczuciu należy także zawrzeć użytkownika oraz grupę będącą źródłem zaobserwowanej operacji. Zawarcie~w~tych statystykach nazwy wywołania systemowego ma znaczenie dla sprecyzowania jaka operacja \emph{naprawdę} została dokonana \cite{kernel}. Dany jest przykład użycia aplikacji \texttt{Visual Studio Code}: 
+Aby dokonać rzetelnego raportu dla administratora~w~moim przeczuciu należy także zawrzeć użytkownika oraz grupę będącą źródłem zaobserwowanej operacji. 
+Zawarcie~w~tych statystykach nazwy wywołania systemowego ma znaczenie dla sprecyzowania jaka operacja \emph{naprawdę} została dokonana \cite{kernel}. Dany jest przykład użycia aplikacji \texttt{Visual Studio Code}: 
 \begin{lstlisting}[language=bash,
     backgroundcolor=\color{EEGold!5!white},
     caption={Przykładowo używając \texttt{Visual Studio Code} niektóre operacje mogą
@@ -40,6 +41,13 @@ Aby dokonać rzetelnego raportu dla administratora~w~moim przeczuciu należy tak
     read(26, "296974470 53709 24257 29420 0 82"..., 4095) = 38
 \end{lstlisting}
 W listingu wyżej można wydedukować na podstawie wiedzy o tym, że \texttt{Visual Studio Code} jest edytorem tekstowym, że otwarto plik~z~blokadą wykluczającą, wskaźnik~w~nim został przesunięty do miejsca zerowego dla pliku o deskryptorze numer dwadzieścia sześć oraz odczytano 4095 znaków od tamtego miejsca. Reasumując - odczytano plik do edycji i zablokowano do niego dostęp innym procesom.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{rysunki/relevant_data_components.jpg}
+    \caption{Najbardziej znaczące źródła danych o ataku wg. MITRE\protect\footnotemark .}
+    \label{fig:enter-label}
+\end{figure}
+\footnotetext{\url{https://github.com/mitre-attack/attack-datasources/blob/main/docs/images/relevant_data_components.jpg}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Potencjalne wyzwania i ograniczenia metody}
 Do najciekawszych wyzwań zaproponowanego rozwiązania należą zarówno uniwersalne aspekty techniczne jak i związane~z~doborem dystrybucji i wersji jądra systemowego Linux. Rozwiązanie wykrywające operacje musi być dostatecznie rzetelne i~w~powszechnym użyciu.~W~innym wypadku kontrola systemu będzie zwyczajnie pełna luk, które same~w~sobie będą trudne do wykrycia. Efektem złego doboru roziwązania technicznego dla funckjonalności wykrywającej operacje na systemie plików może być utrata wsparcia deweloperskiego dla głównej wersji jądra systemu.
