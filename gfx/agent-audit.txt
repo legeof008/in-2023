@@ -1,12 +1,18 @@
-Strategy evaluations: {"Executable":"Low",
-    "Threshold":"High",
+<9>1 2023-12-19T18:28:55.009Z
+    test-hostname 
+    ransomware-scanner 
+    - - -  
+Strategy evaluations: 
+{
     "Rename":"Low",
+    "Threshold":"High",
+    "Executable":"High",
     "RansomNote":"Low"
 }
 File risk evaluation {
-    "/home/maciek/box/testfile.png":"High",
-    "/home/maciek/box/hellot_there.txt":"Medium",
-    "/home/maciek/box/h1":"Medium",
-    "/home/maciek/box/testfile (copy 1).png":"High",
-    "/home/maciek/box/h2":"Medium"
+    "/home/userA/box/testfile.png":"High",
+    "/home/userA/box/h1.csv":"Medium",
+    "/home/userA/box/files.zip":"High",
+    "/home/userA/box/h2.csv":"Medium"
+    "/home/maciek/box/a.out":"Medium",
 }
