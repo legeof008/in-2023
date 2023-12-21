@@ -216,10 +216,20 @@ FS Audit Parser dokonuje wyłacznie zapisów do bazy, a Ransomware Scanner wył�
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.3\linewidth]{rysunki/db.png}
-    \caption{Schemat bazy danych.}
-    \label{fig:enter-label}
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.5\linewidth]{rysunki/db.png} % rysunek niemal na szerokość linii ale w ramach "subfigure"
+      \label{rys:wektorowopdf}
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.5\linewidth]{rysunki/db2.png}
+      \label{rys:wektorowopng}
+    \end{subfigure}
+    \caption{Schemat bazy danych}
+    \label{rys:wektorowo}
 \end{figure}
+
 Projekt bazy danych jest bardzo prosty~i~oparty na podstawowych informacjach potrzebnych do implementacji logiki wykrywania ataku zdefiniowanych~w~sekcji \hyperref[sec:wybor]{Wybór odpowiednich statystyk~i~metryk do analizy}. Baza danych ma agregować funkcję przekazywania informacji między komponentami~i~zapisywaniu ich~w~celu prześledzenia danych historycznych na niewielką skalę.
 \newline
 Projekt architektury ze względu na silnie powiązaną dziedzinę z kontekstem technologicznym, nosi znamię pokrewnej do architektury wdrożenia. Prywatnie uważam,~że~nie jest to problemem gdyż powszechnie stosowane rozwiązania~w~cyberbezpieczeństwie \emph{nie mogą} pozwolić sobie na zupełne wyabstrachowanie swojej architektury od dziedziny technologicznej jaką mają obejmować.
