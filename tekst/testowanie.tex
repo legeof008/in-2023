@@ -5,13 +5,13 @@ zachować możliwie największe środki ostrożności podczas wykonywania scenar
 Moim stanowiskiem pracy był laptop Asus TUF Gaming FX505D~z~8 GB ramu i 512 GB pamięci NVME~z~zainstalowanym Linuksem Proxmox VE 8.1\footnote{Obraz systemu został pobrany ze strony \url{https://www.proxmox.com/en/downloads}. SHA256 obrazu wynosiło 9018a17307ad50eb9bf32a805d0917d621499363ef87b0b477332ed9f9d7dcc1.}. Proxmox jest dystrybucją specjalizującą się w zarządzaniu wirtualną infrastrukturą (na rodzaj VmWare). Posiada ona wygodny interfejs graficzny dostępny przez sieć oraz wiele udogodnień z dziedziny wirtualizacji.
 \newline
 Wszystkie testowane maszyny wirtualne mają zainstalowanego Ubuntu Server 22.04 LTS\footnote{\url{https://ubuntu.com/download/server}}. Każda z wirtualnych maszyn ma przydzielone 32 GB pamięci twardej, 8GB pamięci RAM oraz 8 procesorów. Jako hypervisor korzystałem~z~QEMU\footnote{\url{https://www.qemu.org/}} bez KVM\footnote{\url{https://linux-kvm.org/page/Main_Page}}.
+Mimo iż użycie KVM przyspieszyłoby działanie maszyn wirtualnych, postanowiłem~z~niego nie korzystać z~powodu braku konkretnych dowodów na absolutną odporność KVM switcha na oprogramowanie złośliwe. Dodatkowym środkiem bezpieczeństwa było zupełne wyizolowanie wirtualnych maszyn we własnych podsieciach na maszynie, która sama także była kompletnie fizycznie odizolowana od sieci zewnętrznych. Zasady audytu na maszynach zostały utworzone w trybie \foreignquote{english}{immutable}, tym samym nie mogły zostać zmienione bez ponownego uruchomienia systemu.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.45\linewidth]{rysunki/test.drawio.pdf}
+    \includegraphics[width=0.8\linewidth]{rysunki/test.drawio.pdf}
     \caption{Architektura infrastruktury testowej.}
     \label{fig:enter-label}
 \end{figure}
-Mimo iż użycie KVM przyspieszyłoby działanie maszyn wirtualnych, postanowiłem~z~niego nie korzystać z~powodu braku konkretnych dowodów na absolutną odporność KVM switcha na oprogramowanie złośliwe. Dodatkowym środkiem bezpieczeństwa było zupełne wyizolowanie wirtualnych maszyn we własnych podsieciach na maszynie, która sama także była kompletnie fizycznie odizolowana od sieci zewnętrznych. Zasady audytu na maszynach zostały utworzone w trybie \foreignquote{english}{immutable}, tym samym nie mogły zostać zmienione bez ponownego uruchomienia systemu.
 
 \subsection{Ustalenie metryki skuteczności rozwiązania}
 Podstawowym założeniem testów była pewność odbywania się ataku podczas działania aplikacji. W tym wypadku nie ma sensu testowanie skuteczności w formie wartości dokładności wykrywania obecności ataku, gdyż jest on stałym elementem wszystkich scenariuszy. Zamiast tego postanowiłem, że skuteczność rozwiązania będzie mierzona na podstawie \emph{czasu wykrycia} od momentu rozpoczęcia ataku. Jest to miarodajna metryka naturalnie powiązanya~z~potencjalnym zakresem strat w organizacji zagrożonej ransomware.
@@ -31,27 +31,23 @@ Jako podstawowy scenariusz postanowiłem dokonać ataku za pomocą archiwizacji~
 Warto dodać, że komenda nie wymagała przywilejów super usera. Istnieje więc możliwość wystąpienia podobnego ataku w organizacji w której doszło do wycieku danych kont pracowników bez przywilejów sudo.
 \begin{lstlisting}[language=bash,
     backgroundcolor=\color{EEGold!5!white},
-    caption={Fragment logów~z~komponentu zbierającego informacje o systemie plików. Będzie to jedyny tak długi fragment, który
-    chciałem pokazać w celach informacyjnych.},
+    caption={Fragment logów~z~komponentu zbierającego informacje o systemie plików.},
     label={lst:logau}]
-    2023-12-17T22:33:07.316~z~INFO  [linux_fs_audit] Inserting {"user":"userA","group":"userA","executable":"/usr/bin/rm","syscall":"unlinkat","timestamp":"1702852387","key":"WRITE"}
-    2023-12-17T22:33:07.351~z~INFO  [linux_fs_audit] Unix stream is readable.
-    2023-12-17T22:33:07.351~z~INFO  [linux_fs_audit] Unix stream is readable.
-    2023-12-17T22:33:07.351~z~WARN  [linux_fs_audit] Blocking error while reading from socket
-    2023-12-17T22:33:09.762~z~INFO  [linux_fs_audit] Unix stream is readable.
-    2023-12-17T22:33:09.762~z~INFO  [linux_fs_audit] Opening an Sqlite connection
-    2023-12-17T22:33:09.763~z~INFO  [linux_fs_audit] Inserting {"user":"userA","group":"userA","executable":"/usr/bin/bash","syscall":"openat","timestamp":"1702852389","key":"READ"}
-    2023-12-17T22:33:09.781~z~INFO  [linux_fs_audit] Opening an Sqlite connection
-    2023-12-17T22:33:09.792~z~INFO  [linux_fs_audit] Unix stream is readable.
-    2023-12-17T22:33:09.792~z~WARN  [linux_fs_audit] Blocking error while reading from socket
-    2023-12-17T22:33:12.999~z~INFO  [linux_fs_audit] Unix stream is readable
-    2023-12-17T22:33:12.999~z~INFO  [linux_fs_audit] Opening an Sqlite connection
-    2023-12-17T22:33:12.999~z~INFO  [linux_fs_audit] Inserting {"user":"userA","group":"userA","executable":"/usr/bin/zip","syscall":"openat","timestamp":"1702852392","key":"WRITE"}
-    2023-12-17T22:33:13.028~z~INFO  [linux_fs_audit] Opening an Sqlite connection
-    2023-12-17T22:33:13.053~z~INFO  [linux_fs_audit] Unix stream is readable.
-    2023-12-17T22:33:13.053~z~INFO  [linux_fs_audit] Opening an Sqlite connection
-    2023-12-17T22:33:13.053~z~INFO  [linux_fs_audit] Inserting {"user":"userA","group":"userA","executable":"/usr/bin/zip","syscall":"unlink","timestamp":"1702852393","key":"WRITE"}
-    2023-12-17T22:33:13.100~z~INFO  [linux_fs_audit] Opening an Sqlite connection
+    2023-12-17T22:33:07.316 z INFO Inserting {"user":"userA","group":"userA","executable":"/usr/bin/rm","syscall":"unlinkat","timestamp":"1702852387","key":"WRITE"}
+    2023-12-17T22:33:07.351 z WARN Blocking error while reading from socket
+    2023-12-17T22:33:09.762 z INFO Unix stream is readable.
+    2023-12-17T22:33:09.762 z INFO Opening an Sqlite connection
+    2023-12-17T22:33:09.763 z INFO Inserting {"user":"userA","group":"userA","executable":"/usr/bin/bash","syscall":"openat","timestamp":"1702852389","key":"READ"}
+    2023-12-17T22:33:09.781 z INFO Opening an Sqlite connection
+    2023-12-17T22:33:09.792 z WARN Blocking error while reading from socket
+    2023-12-17T22:33:12.999 z INFO Unix stream is readable
+    2023-12-17T22:33:12.999 z INFO Opening an Sqlite connection
+    2023-12-17T22:33:12.999 z INFO Inserting {"user":"userA","group":"userA","executable":"/usr/bin/zip","syscall":"openat","timestamp":"1702852392","key":"WRITE"}
+    2023-12-17T22:33:13.028 z INFO Opening an Sqlite connection
+    2023-12-17T22:33:13.053 z INFO Unix stream is readable.
+    2023-12-17T22:33:13.053 z INFO Opening an Sqlite connection
+    2023-12-17T22:33:13.053 z INFO Inserting {"user":"userA","group":"userA","executable":"/usr/bin/zip","syscall":"unlink","timestamp":"1702852393","key":"WRITE"}
+    2023-12-17T22:33:13.100 z INFO Opening an Sqlite connection
 \end{lstlisting}
 Logi~z~części aplikacji związanej ze zbieraniem informacji o systemie plików treściwie ukazują zakres działania tego komponentu. W trybie informacyjnym można zauważyć przewijanie się linijek~z~informacjami~o~odczytanych operacjach. Dodatkowo można zauważyć status odczytu~z~gniazda \texttt{auditd} oraz informacje~o~zapisie danych~o~operacji do bazy SQLite.\newpage
 
